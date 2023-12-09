@@ -1,0 +1,38 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/javascript-node
+{
+	"name": "Node.js",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "mcr.microsoft.com/devcontainers/javascript-node:1-20-bullseye",
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [1123],
+	"appPort": 3000,
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "npm i && sudo chown node node_modules",
+	// Configure tool-specific properties.
+	"customizations": {
+		// Configure properties specific to VS Code.
+		"vscode": {
+			// Add the IDs of extensions you want installed when the container is created.
+			"extensions": [
+				"donjayamanne.githistory",
+				"eamodio.gitlens",
+				"christian-kohler.npm-intellisense",
+				"42Crunch.vscode-openapi",
+				"ionutvmi.path-autocomplete",
+				"christian-kohler.path-intellisense",
+				"esbenp.prettier-vscode",
+				"stylelint.vscode-stylelint",
+				"pflannery.vscode-versionlens",
+				"TabNine.tabnine-vscode"
+			]
+		}
+	},
+	"mounts": [
+    "source=${localWorkspaceFolderBasename}-node_modules,target=${containerWorkspaceFolder}/node_modules,type=volume"
+	], // This is to avoid performance issues with the container and file system
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	"remoteUser": "root" // This avoid dubious ownership git error otherwise you can use the following workarround: 
+}
