@@ -9,6 +9,10 @@ import Select  from '@mui/material/Select';
 import medicamentos from './constants/medicamentos.json';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputAdornment from '@mui/material/InputAdornment';
+import TextField from "@mui/material/TextField";
+import asas from "./constants/asas.json";
+import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
 
 export default function Home() {
   const [medicamento, setMedicamento] = useState('');
@@ -16,9 +20,44 @@ export default function Home() {
   const handleChange = (event) => {
     setMedicamento(event.target.value);
   };
+  const [asa, setAsa] = useState("");
+
+  const handleChangeAsa = (event) => {
+    setAsa(event.target.value);
+  };
+  const handleOnClick = () => {
+    console.log("click");
+  };
   
   return (
     <main className={styles.main}>
+      {/* Asas médicas */}
+      <FormControl fullWidth>
+        <InputLabel id="asas-label">Asa medica</InputLabel>
+        <Select
+          labelId="asas-label"
+          id="demo-simple-select"
+          value={asa}
+          label="Asa médica"
+          onChange={handleChangeAsa}
+        >
+          {asas.map((asa) => (
+            <MenuItem key={asa.value} value={asa.value}>
+              {asa.name}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+
+      {/* Cantidad de droga */}
+
+      <TextField id="outlined-basic" label="Cantidad" variant="outlined" />
+
+      {/* Botón agregar */}
+
+      <Button variant="contained" onClick={handleOnClick}>
+        Agregar
+      </Button>
       <FormControl fullWidth>
         <InputLabel id="medicamento-label">Medicamento</InputLabel>
         <Select
