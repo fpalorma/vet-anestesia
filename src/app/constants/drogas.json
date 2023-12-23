@@ -1,0 +1,112 @@
+[
+  {
+    "label": "Propofol",
+    "bolo": { "value": 2, "unit": "mg/kg" },
+    "dosis": { "value": 0.15, "unit": "mg/kg/min", "unique": false },
+    "precio": 1500,
+    "id": "e642f460-8ba3-4f1c-a50b-9cf9a8e9efb7"
+  },
+  {
+    "label": "Remi",
+    "dosis": { "value": 0.4, "unit": "mcg/kg/min", "unique": false },
+    "precio": 1780,
+    "id": "a7351c87-94af-4fcf-9f11-0e4c8b76c0df"
+  },
+  {
+    "label": "Fenta",
+    "bolo": { "value": 5, "unit": "mcg/kg" },
+    "dosis": { "value": 3, "unit": "mcg/kg/hr", "unique": false },
+    "precio": 800,
+    "id": "cbdfca25-b370-417d-b3c1-32f0f660b97d"
+  },
+  {
+    "label": "Morfina",
+    "dosis": { "value": 0.3, "unit": "mg/kg", "unique": true },
+    "precio": 350,
+    "id": "4d9a5b49-0d7c-4d12-9a33-b85fcd99c9c2"
+  },
+  {
+    "label": "Butorfanol",
+    "dosis": { "value": 0.4, "unit": "mg/kg", "unique": true },
+    "precio": 8000,
+    "id": "d4532de4-539e-4d06-987e-0e2b98fbc8a8"
+  },
+  {
+    "label": "Midazolam",
+    "bolo": { "value": 0.5, "unit": "mg/kg" },
+    "dosis": { "value": 0.5, "unit": "mg/kg/hr", "unique": false },
+    "precio": 3000,
+    "id": "5eef9b3a-9449-482c-b166-dfd37bcabde7"
+  },
+  {
+    "label": "Acepro",
+    "dosis": { "value": 0.01, "unit": "mg/kg", "unique": true },
+    "precio": 3700,
+    "id": "bf167d6b-890d-4e5b-a227-7e9fb6a4d8c6"
+  },
+  {
+    "label": "Lido bloq",
+    "dosis": { "value": 0.3, "unit": "ml/kg", "unique": true },
+    "precio": 1900,
+    "id": "a99d836d-e468-4a06-a52e-d00754032b91"
+  },
+  {
+    "label": "Lido ev",
+    "bolo": { "value": 2, "unit": "mg/kg" },
+    "dosis": { "value": 16.6, "unit": "mcg/kg/min", "unique": false },
+    "precio": 1900,
+    "id": "5e8478d2-556b-4d25-8195-af3c3140d5bf"
+  },
+  {
+    "label": "Bupi",
+    "dosis": { "value": 0.15, "unit": "ml/kg", "unique": true },
+    "precio": 2000,
+    "id": "0ee53c0f-c7ea-4ba4-9163-0db9c85fe24a"
+  },
+  {
+    "label": "Nora",
+    "dosis": { "value": 3, "unit": "mcg/kg/min", "unique": false },
+    "precio": 200,
+    "id": "7c5e5ec2-72c0-4d64-8d08-85b9a4e1c758"
+  },
+  {
+    "label": "Dobuta",
+    "dosis": { "value": 5, "unit": "mcg/kg/min", "unique": false },
+    "precio": 1060,
+    "id": "2bd1197d-23c8-4140-bc7e-b7edc6e99893"
+  },
+  {
+    "label": "Dexmedeto",
+    "bolo": { "value": 1, "unit": "mcg/kg" },
+    "dosis": { "value": 0.5, "unit": "mcg/kg/hr", "unique": false },
+    "precio": 800,
+    "id": "e4e558f1-11ed-4e50-bde8-5397b0e56e04"
+  },
+  {
+    "label": "Medeto",
+    "bolo": { "value": 5, "unit": "mcg/kg" },
+    "dosis": { "value": 1, "unit": "mcg/kg/hr", "unique": false },
+    "precio": 6400,
+    "id": "f2d8e2d1-cb87-4f06-b7d6-1a888f0f0d7c"
+  },
+  {
+    "label": "Yohimbina",
+    "dosis": { "value": 0.1, "unit": "mg/kg", "unique": true },
+    "precio": 3600,
+    "id": "88b09016-e6b5-4d17-a819-312be8a420d7"
+  },
+  {
+    "label": "Ketamina",
+    "bolo": { "value": 1, "unit": "mg/kg" },
+    "dosis": { "value": 0.5, "unit": "mg/kg/hr", "unique": false },
+    "precio": 2700,
+    "id": "9e0ecf0a-7e0b-4b50-b217-4c0c46f23a4b"
+  },
+  {
+    "label": "Ac tranexamico",
+    "bolo": { "value": 20, "unit": "mg/kg" },
+    "dosis": { "value": 1, "unit": "mg/kg/hr", "unique": false },
+    "precio": 1500,
+    "id": "8bb7e258-1a49-4e1d-a41a-104d10c68d6a"
+  }
+]
