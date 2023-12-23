@@ -5,12 +5,13 @@
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	"image": "mcr.microsoft.com/devcontainers/javascript-node:1-20-bullseye",
 	// Features to add to the dev container. More info: https://containers.dev/features.
-	// "features": {},
+	"features": {},
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	"forwardPorts": [1123],
-	"appPort": 3000,
+	"forwardPorts": [1123, 3000],
 	// Use 'postCreateCommand' to run commands after the container is created.
 	"postCreateCommand": "npm i && sudo chown node node_modules",
+	// Use 'postStartCommand' to run commands after the container is created.
+	"postStartCommand": "npm run dev:container",
 	// Configure tool-specific properties.
 	"customizations": {
 		// Configure properties specific to VS Code.
@@ -30,9 +31,10 @@
 			]
 		}
 	},
+	// This is to avoid performance issues with the container and file system
 	"mounts": [
     "source=${localWorkspaceFolderBasename}-node_modules,target=${containerWorkspaceFolder}/node_modules,type=volume"
-	], // This is to avoid performance issues with the container and file system
-	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	"remoteUser": "root" // This avoid dubious ownership git error otherwise you can use the following workarround: 
+	],
+	// Uncomment to connect as root instead. This avoid dubious ownership git error. More info: https://aka.ms/dev-containers-non-root.
+	"remoteUser": "root"
 }
