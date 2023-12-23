@@ -24,6 +24,8 @@ import Chip from '@mui/material/Chip';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import ReceiptOutlinedIcon from '@mui/icons-material/ReceiptOutlined';
 import { getDrogaDetails } from './utils/drogas';
+import { useForm, Controller } from "react-hook-form"
+
 
 export default function Home() {
   const [rows, setRows] = useState([]);
@@ -31,6 +33,9 @@ export default function Home() {
   const [tiempo, setTiempo] = useState(0);
   const [asa, setAsa] = useState('');
   const [peso, setPeso] = useState(0);
+
+  const { register, formState: { errors }, control, trigger } = useForm();
+  console.log(formState);
 
   const listaDrogas = drogas.filter(d => !rows.some(r => r.id == d.id));
 
@@ -90,22 +95,37 @@ export default function Home() {
         </Select>
         {asa && <FormHelperText id="asa-descripcion">{asa.description}</FormHelperText>}
       </FormControl>
-      <FormControl fullWidth margin='normal'>
-        <InputLabel id="peso-label">Peso</InputLabel>
-        <OutlinedInput
-          id="peso"
-          label="Peso"
-          type='number' 
-          value={peso}
-          onChange={(e) => setPeso(e.target.value)}
-          endAdornment={<InputAdornment position="end">kg</InputAdornment>}
-          aria-describedby="outlined-weight-helper-text"
-          inputProps={{
-            'aria-label': 'peso',
-            pattern: "^(0*[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$",
-          }}
-        />
-      </FormControl>
+      <Controller 
+        control={control}
+        name='peso'
+        rules={{ 
+          required: 'El peso es requerido',
+          pattern: {
+            value: /^(0*[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$/g,
+            message: 'El peso debe ser mayor a 0'
+          }
+        }}
+        render={({ field }) => (
+          <FormControl fullWidth margin='normal' error={errors.peso}>
+            <InputLabel id="peso-label">Peso</InputLabel>
+            <OutlinedInput
+              {...field}
+              id="peso"
+              label="Peso"
+              type='number'
+              defaultValue={0}
+              onBlur={() => trigger('peso')}
+              endAdornment={<InputAdornment position="end">kg</InputAdornment>}
+              aria-describedby="outlined-weight-helper-text"
+              inputProps={{
+                'aria-label': 'peso'
+              }}
+            />
+            <FormHelperText id="peso-helper">{errors.peso?.message}</FormHelperText>
+          </FormControl>
+        )}
+      >
+      </Controller>
       <Divider variant="fullWidth">
         <Chip label="Drogas" />
       </Divider>
