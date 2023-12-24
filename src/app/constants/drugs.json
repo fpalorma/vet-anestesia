@@ -1,0 +1,146 @@
+[
+  {
+    "label": "Propofol",
+    "bolo": { "value": 2, "unit": "mg/kg" },
+    "dose": { "value": 0.15, "unit": "mg/kg/min", "unique": false },
+    "density": { "value": 20, "unit": "mg/kg" },
+    "price": 1500,
+    "size": { "value": 50, "unit": "ml" },
+    "id": "e642f460-8ba3-4f1c-a50b-9cf9a8e9efb7"
+  },
+  {
+    "label": "Remi",
+    "dose": { "value": 0.4, "unit": "mcg/kg/min", "unique": false },
+    "density": { "value": 10, "unit": "mcg/kg" },
+    "price": 1780,
+    "size": { "value": 500, "unit": "ml" },
+    "id": "a7351c87-94af-4fcf-9f11-0e4c8b76c0df"
+  },
+  {
+    "label": "Fenta",
+    "bolo": { "value": 5, "unit": "mcg/kg" },
+    "dose": { "value": 3, "unit": "mcg/kg/hr", "unique": false },
+    "density": { "value": 50, "unit": "mcg/kg" },
+    "price": 800,
+    "size": { "value": 5, "unit": "ml" },
+    "id": "cbdfca25-b370-417d-b3c1-32f0f660b97d"
+  },
+  {
+    "label": "Morfina",
+    "dose": { "value": 0.3, "unit": "mg/kg", "unique": true },
+    "density": { "value": 10, "unit": "mg/kg" },
+    "price": 350,
+    "size": { "value": 1, "unit": "ml" },
+    "id": "4d9a5b49-0d7c-4d12-9a33-b85fcd99c9c2"
+  },
+  {
+    "label": "Butorfanol",
+    "dose": { "value": 0.4, "unit": "mg/kg", "unique": true },
+    "density": { "value": 10, "unit": "mg/kg" },
+    "price": 8000,
+    "size": { "value": 10, "unit": "ml" },
+    "id": "d4532de4-539e-4d06-987e-0e2b98fbc8a8"
+  },
+  {
+    "label": "Midazolam",
+    "bolo": { "value": 0.5, "unit": "mg/kg" },
+    "dose": { "value": 0.5, "unit": "mg/kg/hr", "unique": false },
+    "density": { "value": 5, "unit": "mg/kg" },
+    "price": 3000,
+    "size": { "value": 20, "unit": "ml" },
+    "id": "5eef9b3a-9449-482c-b166-dfd37bcabde7"
+  },
+  {
+    "label": "Acepro",
+    "dose": { "value": 0.01, "unit": "mg/kg", "unique": true },
+    "density": { "value": 0, "unit": "mg/kg" },
+    "price": 3700,
+    "size": { "value": 50, "unit": "ml" },
+    "id": "bf167d6b-890d-4e5b-a227-7e9fb6a4d8c6"
+  },
+  {
+    "label": "Lido bloq",
+    "dose": { "value": 0.3, "unit": "ml/kg", "unique": true },
+    "density": { "value": 20, "unit": "ml/kg" },
+    "price": 1900,
+    "size": { "value": 100, "unit": "ml" },
+    "id": "a99d836d-e468-4a06-a52e-d00754032b91"
+  },
+  {
+    "label": "Lido ev",
+    "bolo": { "value": 2, "unit": "mg/kg" },
+    "dose": { "value": 16.6, "unit": "mcg/kg/min", "unique": false },
+    "density": { "value": 20, "unit": "ml/kg" },
+    "price": 1900,
+    "size": { "value": 100, "unit": "ml" },
+    "id": "5e8478d2-556b-4d25-8195-af3c3140d5bf"
+  },
+  {
+    "label": "Bupi",
+    "dose": { "value": 0.15, "unit": "ml/kg", "unique": true },
+    "density": { "value": 50, "unit": "ml/kg" },
+    "price": 2000,
+    "size": { "value": 50, "unit": "ml" },
+    "id": "0ee53c0f-c7ea-4ba4-9163-0db9c85fe24a"
+  },
+  {
+    "label": "Nora",
+    "dose": { "value": 3, "unit": "mcg/kg/min", "unique": false },
+    "density": { "value": 1, "unit": "mcg/kg" },
+    "price": 200,
+    "size": { "value": 500, "unit": "ml" },
+    "id": "7c5e5ec2-72c0-4d64-8d08-85b9a4e1c758"
+  },
+  {
+    "label": "Dobuta",
+    "dose": { "value": 5, "unit": "mcg/kg/min", "unique": false },
+    "density": { "value": 12.5, "unit": "mcg/kg" },
+    "price": 1060,
+    "size": { "value": 500, "unit": "ml" },
+    "id": "2bd1197d-23c8-4140-bc7e-b7edc6e99893"
+  },
+  {
+    "label": "Dexmedeto",
+    "bolo": { "value": 1, "unit": "mcg/kg" },
+    "dose": { "value": 0.5, "unit": "mcg/kg/hr", "unique": false },
+    "density": { "value": 100, "unit": "mcg/kg" },
+    "price": 800,
+    "size": { "value": 2, "unit": "ml" },
+    "id": "e4e558f1-11ed-4e50-bde8-5397b0e56e04"
+  },
+  {
+    "label": "Medeto",
+    "bolo": { "value": 5, "unit": "mcg/kg" },
+    "dose": { "value": 1, "unit": "mcg/kg/hr", "unique": false },
+    "density": { "value": 500, "unit": "mcg/kg" },
+    "price": 6400,
+    "size": { "value": 10, "unit": "ml" },
+    "id": "f2d8e2d1-cb87-4f06-b7d6-1a888f0f0d7c"
+  },
+  {
+    "label": "Yohimbina",
+    "dose": { "value": 0.1, "unit": "mg/kg", "unique": true },
+    "density": { "value": 0, "unit": "mg/kg" },
+    "price": 3600,
+    "size": { "value": 20, "unit": "ml" },
+    "id": "88b09016-e6b5-4d17-a819-312be8a420d7"
+  },
+  {
+    "label": "Ketamina",
+    "bolo": { "value": 1, "unit": "mg/kg" },
+    "dose": { "value": 0.5, "unit": "mg/kg/hr", "unique": false },
+    "density": { "value": 50, "unit": "mg/kg" },
+    "price": 2700,
+    "size": { "value": 50, "unit": "ml" },
+    "id": "9e0ecf0a-7e0b-4b50-b217-4c0c46f23a4b"
+  },
+  {
+    "label": "Ac tranexamico",
+    "bolo": { "value": 20, "unit": "mg/kg" },
+    "dose": { "value": 1, "unit": "mg/kg/hr", "unique": false },
+    "density": { "value": 0, "unit": "mg/kg" },
+    "price": 1500,
+    "size": { "value": 5, "unit": "ml" },
+    "id": "8bb7e258-1a49-4e1d-a41a-104d10c68d6a"
+  }
+]
