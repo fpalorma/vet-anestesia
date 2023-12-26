@@ -22,6 +22,8 @@ import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOu
 import ReceiptOutlinedIcon from '@mui/icons-material/ReceiptOutlined';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
+import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
+import { lightBlue } from '@mui/material/colors';
 import { getDrugDetails, getBudget } from './utils/drugs';
 import { useForm, Controller } from "react-hook-form"
 import drugList from './constants/drugs.json';
@@ -32,7 +34,7 @@ export default function Home() {
   const [drug, setDrug] = useState(null);
   const [budget, setBudget] = useState(0);
 
-  const { formState: { errors }, control, trigger, clearErrors, getFieldState, getValues, setValue } = useForm();
+  const { formState: { errors }, control, trigger, clearErrors, getFieldState, getValues, setValue, reset } = useForm();
   const { asa, weight, time } = getValues();
 
   const listaDrogas = drugList.filter(d => !drugs.some(r => r.id == d.id));
@@ -59,8 +61,16 @@ export default function Home() {
     setDrugs(list);
   };
 
-  const handleOnPresupuestar = () => {
-    const total = getBudget(asa, weight, drugs);
+  const handleOnClean = () => {
+    setDrug(null);
+    setDrugs([]);
+    setBudget(0);
+    reset();
+  };
+
+  const handleOnQuote = () => {
+    const selectedAsa = asas.find(a=> a.id === asa);
+    const total = getBudget(selectedAsa, weight, drugs);
     setBudget(total);
   };
   
@@ -72,6 +82,7 @@ export default function Home() {
         rules={{ 
           required: 'El asa médica es requerida',
         }}
+        defaultValue=''
         render={({ field }) => (
           <FormControl fullWidth margin='normal' error={errors.asa}>
             <InputLabel id="asa-label">Asa medica</InputLabel>
@@ -83,7 +94,7 @@ export default function Home() {
               onBlur={() => trigger('asa')}
             >
               {asas.map((asa) => (
-                <MenuItem key={asa.id} value={asa}>
+                <MenuItem key={asa.id} value={asa.id}>
                   {asa.label}
                 </MenuItem>
               ))}
@@ -96,6 +107,7 @@ export default function Home() {
       <Controller 
         control={control}
         name='weight'
+        defaultValue={0}
         rules={{ 
           required: 'El peso es requerido',
           pattern: {
@@ -111,7 +123,6 @@ export default function Home() {
               id="weight"
               label="Peso"
               type='number'
-              defaultValue={0}
               onBlur={() => trigger('weight')}
               endAdornment={<InputAdornment position="end">kg</InputAdornment>}
               aria-describedby="outlined-weight-helper-text"
@@ -136,7 +147,7 @@ export default function Home() {
         renderInput={(params) => 
           <FormControl fullWidth margin='normal'>
             <TextField {...params} label="Droga" />
-            {drug && <FormHelperText id="drug-dosis">
+            {drug && <FormHelperText id="drug-dose">
               {getDrugDetails(drug)}
               </FormHelperText>}
           </FormControl>
@@ -152,6 +163,7 @@ export default function Home() {
             message: 'El tiempo debe ser mayor a 0'
           }
         }}
+        defaultValue={0}
         render={({ field }) => (
           <FormControl fullWidth margin='normal' error={errors.time}>
             <InputLabel id="time-label">Tiempo</InputLabel>
@@ -160,7 +172,7 @@ export default function Home() {
               id="time"
               label="Tiempo"
               type='number'
-              disabled={!drug || drug?.dosis?.unique}
+              disabled={!drug || drug?.dose?.unique}
               onBlur={() => trigger('time')}
               endAdornment={<InputAdornment position="end">hr</InputAdornment>}
               inputProps={{
@@ -177,7 +189,7 @@ export default function Home() {
         variant="contained"
         onClick={handleOnAdd}
         startIcon={<AddCircleOutlineOutlinedIcon />}
-        disabled={!drug || (!drug.dosis.unique && !time) || getFieldState('time').invalid }
+        disabled={!drug || (!drug.dose.unique && !time) || getFieldState('time').invalid }
       >
         Agregar
       </Button>
@@ -206,15 +218,32 @@ export default function Home() {
       <Button
         fullWidth 
         variant="contained"
-        onClick={handleOnPresupuestar}
+        onClick={handleOnQuote}
         startIcon={<ReceiptOutlinedIcon />}
         disabled={!asa || !weight || !drugs.length}
       >
         Presupuestar
       </Button>
-      <Box fullWidth>
-        <Paper elevation={3}>Presupuesto{budget}</Paper>
-      </Box>
+      {
+        !!budget && <Box fullWidth sx={{ my: 2 }}>
+          <Paper elevation={3} sx={{ p: 2, bgcolor: 'primary.main' }}>
+            <Box sx={{ color: lightBlue[100], fontWeight: 'medium', fontSize: 18 }}>Presupuesto</Box>
+            <Box sx={{ color: 'white', fontSize: 34, fontWeight: 'medium', my: 2 }}>
+              $ {budget}
+            </Box>
+          </Paper>
+        </Box>
+      }
+      <Button
+        fullWidth
+        sx={{ mt: 2 }}
+        variant="contained"
+        onClick={handleOnClean}
+        color="error"
+        startIcon={<CleaningServicesIcon />}
+      >
+        Limpiar
+      </Button>
     </main>
   )
 }

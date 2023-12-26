@@ -22,7 +22,7 @@ const getTime = (time, unit) => {
 
 export const getBudget = (asa, weight, list) => {
   let total = asa.price;
-  list.forEach(({ price, bolo, time, density, size }) => {
+  list.forEach(({ price, bolo, time, density, size, dose }) => {
     const priceXMl = getDrugPricePerMilliliter(price, size)
     if (bolo) {
       total += ((weight * bolo.value) / density.value) * priceXMl;
