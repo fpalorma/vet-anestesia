@@ -1,0 +1,32 @@
+[
+  {
+    "id": "3f9a1a8c-14e3-46f9-9b55-ae31a11c0b89",
+    "label": "ASA 1",
+    "description": "Sano con analítica",
+    "price": 16250
+  },
+  {
+    "id": "e9e7e178-49b5-4680-917e-9b4ff6a0189e",
+    "label": "ASA 2",
+    "description": "Sano sin analítica / Con enfermedad localizada o leve",
+    "price": 31200
+  },
+  {
+    "id": "f4a176db-04a0-4968-9de8-2d2059e926b2",
+    "label": "ASA 3",
+    "description": "Con enfermedad sistémica compensada",
+    "price": 31200
+  },
+  {
+    "id": "d54ebf0d-077e-40d2-b85c-cde903c48277",
+    "label": "ASA 4",
+    "description": "Con enfermedad sistémica descompensada",
+    "price": 44200
+  },
+  {
+    "id": "394c512c-63e7-42e3-afab-e47a7db00a78",
+    "label": "ASA 5",
+    "description": "Con riesgo inminente de muerte",
+    "price": 44200
+  }
+]
