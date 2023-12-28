@@ -28,7 +28,11 @@ export const getBudget = (asa, weight, list) => {
       total += ((weight * bolo.value) / density.value) * priceXMl;
     }
     if (dose.unique) {
-      total += ((weight * dose.value) / density.value) * priceXMl;
+      if (density) {
+        total += ((weight * dose.value) / density.value) * priceXMl;
+      } else {
+        total += weight * dose.value * priceXMl;
+      }
     } else {
       total += ((weight * dose.value) / density.value) * priceXMl * getTime(time, dose.unit);
     }

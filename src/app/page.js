@@ -84,7 +84,7 @@ export default function Home() {
         }}
         defaultValue=''
         render={({ field }) => (
-          <FormControl fullWidth margin='normal' error={errors.asa}>
+          <FormControl fullWidth margin='normal' error={!!errors.asa}>
             <InputLabel id="asa-label">Asa medica</InputLabel>
             <Select
               {...field}
@@ -116,7 +116,7 @@ export default function Home() {
           }
         }}
         render={({ field }) => (
-          <FormControl fullWidth margin='normal' error={errors.weight}>
+          <FormControl fullWidth margin='normal' error={!!errors.weight}>
             <InputLabel id="weight-label">Peso</InputLabel>
             <OutlinedInput
               {...field}
@@ -165,7 +165,7 @@ export default function Home() {
         }}
         defaultValue={0}
         render={({ field }) => (
-          <FormControl fullWidth margin='normal' error={errors.time}>
+          <FormControl fullWidth margin='normal' error={!!errors.time}>
             <InputLabel id="time-label">Tiempo</InputLabel>
             <OutlinedInput
               {...field}
@@ -196,9 +196,8 @@ export default function Home() {
       <List dense={true}>
       {
         drugs.map((row) => 
-          <>
+          <div key={row.id}>
             <ListItem
-              key={row.id}
               secondaryAction={
                 <IconButton edge="end" aria-label="delete" onClick={() => handleOnDelete(row.id)}>
                   <DeleteOutlinedIcon color='error' />
@@ -211,7 +210,7 @@ export default function Home() {
               />
             </ListItem>
             <Divider />
-          </>
+          </div>
         )
       }
       </List>
@@ -225,7 +224,7 @@ export default function Home() {
         Presupuestar
       </Button>
       {
-        !!budget && <Box fullWidth sx={{ my: 2 }}>
+        !!budget && <Box sx={{ my: 2 }}>
           <Paper elevation={3} sx={{ p: 2, bgcolor: 'primary.main' }}>
             <Box sx={{ color: lightBlue[100], fontWeight: 'medium', fontSize: 18 }}>Presupuesto</Box>
             <Box sx={{ color: 'white', fontSize: 34, fontWeight: 'medium', my: 2 }}>
