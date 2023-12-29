@@ -23,6 +23,9 @@ import ReceiptOutlinedIcon from '@mui/icons-material/ReceiptOutlined';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Switch from '@mui/material/Switch';
 import { lightBlue } from '@mui/material/colors';
 import { getDrugDetails, getBudget } from './utils/drugs';
 import { useForm, Controller } from "react-hook-form"
@@ -38,16 +41,32 @@ export default function Home() {
   const { asa, weight, time } = getValues();
 
   const listaDrogas = drugList.filter(d => !drugs.some(r => r.id == d.id));
+  const selectedAsa = asa ? asas.find(a=> a.id === asa) : null;
+
+  const [drugSettings, setDrugSettings] = useState({
+    bolo: true,
+    mant: true,
+  });
+
+  const handleOnDrugSettingsChange = (event) => {
+    setDrugSettings({
+      ...drugSettings,
+      [event.target.name]: event.target.checked,
+    });
+  };
 
   const handleOnAdd = () => {
     const element = {
       time,
       ...drug,
+      bolo: drugSettings.bolo ? drug.bolo : undefined,
+      dose: drugSettings.mant ? drug.dose : undefined
     }
     const list = [element, ...drugs];
     setDrugs(list);
     setDrug(null);
     setValue('time', '0');
+    setDrugSettings({ bolo: true, mant: true });
   };
 
   const handleOnDrugChange = (value) => {
@@ -63,13 +82,13 @@ export default function Home() {
 
   const handleOnClean = () => {
     setDrug(null);
+    setDrugSettings({ bolo: true, mant: true });
     setDrugs([]);
     setBudget(0);
     reset();
   };
 
   const handleOnQuote = () => {
-    const selectedAsa = asas.find(a=> a.id === asa);
     const total = getBudget(selectedAsa, weight, drugs);
     setBudget(total);
   };
@@ -99,7 +118,7 @@ export default function Home() {
                 </MenuItem>
               ))}
             </Select>
-            <FormHelperText id="asa-helper">{errors.asa ? errors.asa.message : asa?.description}</FormHelperText>
+            <FormHelperText id="asa-helper">{errors.asa ? errors.asa.message : selectedAsa?.description}</FormHelperText>
           </FormControl>
         )}
       >
@@ -153,6 +172,12 @@ export default function Home() {
           </FormControl>
         }
       />
+      {
+        drug?.bolo && <FormGroup className={styles.flexRow}>
+          <FormControlLabel control={<Switch name="bolo" onChange={handleOnDrugSettingsChange} checked={drugSettings.bolo} />} label="Bolo" />
+          <FormControlLabel control={<Switch name='mant' onChange={handleOnDrugSettingsChange} checked={drugSettings.mant} />} label="Mantenimiento" />
+        </FormGroup>
+      }
       <Controller 
         control={control}
         name='time'
@@ -189,7 +214,7 @@ export default function Home() {
         variant="contained"
         onClick={handleOnAdd}
         startIcon={<AddCircleOutlineOutlinedIcon />}
-        disabled={!drug || (!drug.dose.unique && !time) || getFieldState('time').invalid }
+        disabled={!drug || (!drug.dose.unique && time == 0) || getFieldState('time').invalid }
       >
         Agregar
       </Button>
