@@ -12,6 +12,7 @@ import { useFormContext, Controller } from "react-hook-form"
 import { getDrugDetails } from '../../utils/drugs';
 import drugList from '../../constants/drugs.json';
 import styles from './style.module.css';
+import { checkTimeDisabled } from "@/app/utils/form";
 
 const DrugForm = ({ drug, selectedDrugs, handleOnDrugChange, handleOnDrugSettingsChange, drugSettings }) => {
   const { formState: { errors }, control, trigger } = useFormContext();
@@ -65,7 +66,7 @@ const DrugForm = ({ drug, selectedDrugs, handleOnDrugChange, handleOnDrugSetting
               id="time"
               label="Tiempo"
               type='number'
-              disabled={!drug || drug?.dose?.unique}
+              disabled={checkTimeDisabled(drug, drugSettings)}
               onBlur={() => trigger('time')}
               endAdornment={<InputAdornment position="end">hr</InputAdornment>}
               inputProps={{

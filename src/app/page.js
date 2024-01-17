@@ -13,6 +13,7 @@ import Budget from './components/budget';
 import DrugForm from './components/drug-form';
 import MainForm from './components/main-form';
 import { getBudget } from './utils/drugs';
+import { checkDrugFormValid } from './utils/form';
 import asas from "./constants/asas.json";
 
 export default function Home() {
@@ -21,7 +22,7 @@ export default function Home() {
   const [budget, setBudget] = useState(0);
 
   const methods = useForm();
-  const { clearErrors, getFieldState, getValues, setValue, reset } = methods;
+  const { clearErrors, getValues, setValue, reset } = methods;
   const { asa, weight, time } = getValues();
 
   const selectedAsa = asas.find(a=> a.id === asa);
@@ -33,6 +34,7 @@ export default function Home() {
       ...drugSettings,
       [event.target.name]: event.target.checked,
     });
+    clearErrors('time');
   };
 
   const handleOnAdd = () => {
@@ -93,7 +95,7 @@ export default function Home() {
         variant="contained"
         onClick={handleOnAdd}
         startIcon={<AddCircleOutlineOutlinedIcon />}
-        disabled={!drug || (!drug.dose.unique && time == 0) || getFieldState('time').invalid }
+        disabled={!checkDrugFormValid(drug, drugSettings, time)}
       >
         Agregar
       </Button>
