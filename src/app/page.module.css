@@ -1,8 +1,3 @@
 .main {
   margin: 1rem 1rem;
 }
-
-.flexRow {
-  display: flex;
-  flex-direction: row;
-}
