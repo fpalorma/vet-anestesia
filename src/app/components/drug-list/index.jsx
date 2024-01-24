@@ -4,7 +4,8 @@ import ListItem from '@mui/material/ListItem';
 import Divider from '@mui/material/Divider';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import IconButton from '@mui/material/IconButton';
-import { getDrugDetails } from '../../utils/drugs';
+import DrugDetails from './drug-details';
+import DrugTitle from './drug-title';
 
 const DrugList = ({ list = [], handleOnDelete }) => {
   return (
@@ -20,8 +21,8 @@ const DrugList = ({ list = [], handleOnDelete }) => {
             }
           >
             <ListItemText
-              primary={row.label}
-              secondary={`${getDrugDetails(row)}`}
+              primary={<DrugTitle title={row.label} />}
+              secondary={<DrugDetails drug={row} />}
             />
           </ListItem>
           <Divider />

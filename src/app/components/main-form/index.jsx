@@ -10,7 +10,7 @@ import { Controller, useFormContext } from "react-hook-form"
 import asas from "../../constants/asas.json";
 
 const MainForm = ({ asa }) => {
-  const { formState: { errors }, control, trigger } = useFormContext();
+  const { formState: { errors }, control } = useFormContext();
 
   return (
     <>
@@ -29,7 +29,6 @@ const MainForm = ({ asa }) => {
               labelId="asa-label"
               id="asa"
               label="Asa médica"
-              onBlur={() => trigger('asa')}
             >
               {asas.map((asa) => (
                 <MenuItem key={asa.id} value={asa.id}>
@@ -45,7 +44,6 @@ const MainForm = ({ asa }) => {
       <Controller 
         control={control}
         name='weight'
-        defaultValue={0}
         rules={{ 
           required: 'El peso es requerido',
           pattern: {
@@ -53,6 +51,7 @@ const MainForm = ({ asa }) => {
             message: 'El peso debe ser mayor a 0'
           }
         }}
+        defaultValue='0'
         render={({ field }) => (
           <FormControl fullWidth margin='normal' error={!!errors.weight}>
             <InputLabel id="weight-label">Peso</InputLabel>
@@ -61,9 +60,7 @@ const MainForm = ({ asa }) => {
               id="weight"
               label="Peso"
               type='number'
-              onBlur={() => trigger('weight')}
               endAdornment={<InputAdornment position="end">kg</InputAdornment>}
-              aria-describedby="outlined-weight-helper-text"
               inputProps={{
                 'aria-label': 'weight'
               }}

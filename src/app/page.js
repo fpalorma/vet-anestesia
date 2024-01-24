@@ -4,7 +4,6 @@ import { useState } from 'react';
 import Button from "@mui/material/Button";
 import Divider from '@mui/material/Divider';
 import Chip from '@mui/material/Chip';
-import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import ReceiptOutlinedIcon from '@mui/icons-material/ReceiptOutlined';
 import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
 import { useForm, FormProvider } from "react-hook-form"
@@ -13,49 +12,23 @@ import Budget from './components/budget';
 import DrugForm from './components/drug-form';
 import MainForm from './components/main-form';
 import { getBudget } from './utils/drugs';
-import { checkDrugFormValid } from './utils/form';
 import asas from "./constants/asas.json";
 
 export default function Home() {
   const [drugs, setDrugs] = useState([]);
-  const [drug, setDrug] = useState(null);
   const [budget, setBudget] = useState(0);
 
-  const methods = useForm();
-  const { clearErrors, getValues, setValue, reset } = methods;
-  const { asa, weight, time } = getValues();
+  const mainForm = useForm({ mode: "onBlur" });
+  const drugForm = useForm({ mode: "onBlur" });
+  const { getValues, formState: { isDirty, isValid } } = mainForm;
+  const { asa, weight } = getValues();
 
   const selectedAsa = asas.find(a=> a.id === asa);
 
-  const [drugSettings, setDrugSettings] = useState({ bolo: true, mant: true });
-
-  const handleOnDrugSettingsChange = (event) => {
-    setDrugSettings({
-      ...drugSettings,
-      [event.target.name]: event.target.checked,
-    });
-    clearErrors('time');
-  };
-
-  const handleOnAdd = () => {
-    const element = {
-      time,
-      ...drug,
-      bolo: drugSettings.bolo ? drug.bolo : undefined,
-      dose: drugSettings.mant ? drug.dose : undefined
-    };
-    const list = [element, ...drugs];
+  const handleOnAdd = (drug) => {
+    const list = [drug, ...drugs];
     setDrugs(list);
-    setDrug(null);
-    setValue('time', '0');
-    setDrugSettings({ bolo: true, mant: true });
   };
-
-  const handleOnDrugChange = (value) => {
-    clearErrors('time');
-    setValue('time', '0'),
-    setDrug(value);
-  }
 
   const handleOnDelete = (id) => {
     const list = drugs.filter(row => row.id !== id);
@@ -63,11 +36,10 @@ export default function Home() {
   };
 
   const handleOnClean = () => {
-    setDrug(null);
-    setDrugSettings({ bolo: true, mant: true });
     setDrugs([]);
     setBudget(0);
-    reset();
+    mainForm.reset();
+    drugForm.reset();
   };
 
   const handleOnQuote = () => {
@@ -77,35 +49,22 @@ export default function Home() {
   
   return (
     <main className={styles.main}>
-      <FormProvider {...methods}>
+      <FormProvider {...mainForm}>
         <MainForm asa={selectedAsa} />
-        <Divider variant="fullWidth">
-          <Chip label="Drogas" />
-        </Divider>
-        <DrugForm
-          drug={drug}
-          selectedDrugs={drugs}
-          handleOnDrugChange={handleOnDrugChange} 
-          drugSettings={drugSettings}
-          handleOnDrugSettingsChange={handleOnDrugSettingsChange}
-        />
       </FormProvider>
-      <Button
-        fullWidth 
-        variant="contained"
-        onClick={handleOnAdd}
-        startIcon={<AddCircleOutlineOutlinedIcon />}
-        disabled={!checkDrugFormValid(drug, drugSettings, time)}
-      >
-        Agregar
-      </Button>
+      <Divider variant="fullWidth">
+        <Chip label="Drogas" />
+      </Divider>
+      <FormProvider {...drugForm}>
+        <DrugForm handleOnAddDrug={handleOnAdd} selectedDrugs={drugs} />
+      </FormProvider>
       <DrugList list={drugs} handleOnDelete={handleOnDelete} />
       <Button
         fullWidth 
         variant="contained"
         onClick={handleOnQuote}
         startIcon={<ReceiptOutlinedIcon />}
-        disabled={!asa || !weight || !drugs.length}
+        disabled={!isDirty || !isValid || !drugs.length}
       >
         Presupuestar
       </Button>
