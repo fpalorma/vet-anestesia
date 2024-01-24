@@ -1,17 +1,17 @@
 import { getTimeMultiplier } from './units';
 
 export const getDrugDetails = (drug) => {
-  if (drug.bolo && drug.dose) {
-    return `Bolo: ${drug.bolo.value} ${drug.bolo.unit} - Mant: ${drug.dose.value} ${drug.dose.unit}`;
-  }
+  let bolo, dose;
   if (drug.bolo) {
-    return `Bolo: ${drug.bolo.value} ${drug.bolo.unit}`;
+    bolo = ` ${drug.bolo.value} ${drug.bolo.unit} `;
   }
-  let details = `${drug.dose.value} ${drug.dose.unit}`;
-  if (!drug.dose.unique && drug.time) {
-    details += ` (${drug.time} hr)`;
+  if (drug.dose) {
+    dose = ` ${drug.dose.value} ${drug.dose.unit} `;
   }
-  return details;
+  if (!drug.dose?.unique && drug.time) {
+    dose += `(${drug.time} hr)`;
+  }
+  return { bolo, dose };
 };
 
 const getDrugPricePerMilliliter = (price, size) => price/size.value;

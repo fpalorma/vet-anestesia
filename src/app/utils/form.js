@@ -14,7 +14,7 @@ export const checkDrugFormValid = (drug, drugSettings, time) => {
   return true;
 };
 
-export const checkTimeDisabled = (drug, drugSettings) => {
+export const checkTimeDisabled = (drug, isDose) => {
   if (!drug) {
     return true;
   }
@@ -23,7 +23,7 @@ export const checkTimeDisabled = (drug, drugSettings) => {
     return true;
   }
   
-  if (!drug?.dose.unique && !drugSettings.mant) {
+  if (!drug?.dose?.unique && !isDose) {
     return true;
   }
 
