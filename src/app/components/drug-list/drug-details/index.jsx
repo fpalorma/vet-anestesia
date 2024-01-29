@@ -5,24 +5,25 @@ const DrugDetails = ({ drug }) => {
   const { bolo, dose } = getDrugDetails(drug);
   return (
     <>
-      <Typography
-        sx={{ display: bolo ? 'inline' : 'none' }}
-        component="span"
-        variant="body2"
-        color="text.primary"
-      >
-        Bolo: 
-      </Typography>
-      {bolo}
-      <Typography
-        sx={{ display: dose ? 'inline' : 'none' }}
-        component="span"
-        variant="body2"
-        color="text.primary"
-      >
-        Dosis: 
-      </Typography>
-      {dose}
+      {
+        bolo && <Typography
+          component="span"
+          variant="body2"
+          color="text.primary"
+        >
+          Bolo:  <span>{bolo} - {drug.bolo.ml} ml </span>
+        </Typography>
+      }
+      {
+        dose && <Typography
+          style={{ display: 'block' }}
+          component="span"
+          variant="body2"
+          color="text.primary"
+        >
+          Dosis: <span>{dose} - {drug.dose.ml} ml</span>
+        </Typography>
+      }
     </>
   )
 }; 

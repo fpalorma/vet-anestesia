@@ -11,7 +11,7 @@ import DrugList from './components/drug-list';
 import Budget from './components/budget';
 import DrugForm from './components/drug-form';
 import MainForm from './components/main-form';
-import { getBudget } from './utils/drugs';
+import { addDrugMl, getBudget } from './utils/drugs';
 import asas from "./constants/asas.json";
 
 export default function Home() {
@@ -26,8 +26,16 @@ export default function Home() {
   const selectedAsa = asas.find(a=> a.id === asa);
 
   const handleOnAdd = (drug) => {
-    const list = [drug, ...drugs];
-    setDrugs(list);
+    /* Check weight and calculate ml here with the weight */
+    if (Number(weight)) {
+      const list = [addDrugMl(weight, drug), ...drugs];
+      setDrugs(list);
+      return true;
+    }
+    
+    const { trigger } = mainForm;
+    trigger('weight');
+    return false;
   };
 
   const handleOnDelete = (id) => {
@@ -50,7 +58,7 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <FormProvider {...mainForm}>
-        <MainForm asa={selectedAsa} />
+        <MainForm asa={selectedAsa} disableWeight={!!drugs.length} />
       </FormProvider>
       <Divider variant="fullWidth">
         <Chip label="Drogas" />
