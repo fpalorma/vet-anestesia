@@ -56,8 +56,11 @@ const DrugForm = ({ handleOnAddDrug, selectedDrugs }) => {
     if (!drug.dose.unique && isDose) {
       element.time = time;
     }
-    handleOnAddDrug(element);
-    reset();
+    // Check if there is an error adding the drug
+    const response = handleOnAddDrug(element);
+    if (response) {
+      reset();
+    }
   };
 
   const options = drugList.filter(d => !selectedDrugs.some(r => r.id == d.id));

@@ -9,7 +9,7 @@ import FormHelperText from '@mui/material/FormHelperText';
 import { Controller, useFormContext } from "react-hook-form"
 import asas from "../../constants/asas.json";
 
-const MainForm = ({ asa }) => {
+const MainForm = ({ asa, disableWeight }) => {
   const { formState: { errors }, control } = useFormContext();
 
   return (
@@ -58,6 +58,7 @@ const MainForm = ({ asa }) => {
             <OutlinedInput
               {...field}
               id="weight"
+              disabled={disableWeight}
               label="Peso"
               type='number'
               endAdornment={<InputAdornment position="end">kg</InputAdornment>}
@@ -65,7 +66,7 @@ const MainForm = ({ asa }) => {
                 'aria-label': 'weight'
               }}
             />
-            <FormHelperText id="weight-helper">{errors.weight?.message}</FormHelperText>
+            <FormHelperText id="weight-helper">{disableWeight ? 'Una vez agregada una droga no se puede modificar el peso' : errors.weight?.message}</FormHelperText>
           </FormControl>
         )}
       >

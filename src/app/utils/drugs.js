@@ -22,25 +22,38 @@ const getTime = (time, unit) => {
   return t * multiplier;
 }
 
-export const getBudget = (asa, weight, list) => {
-  let total = asa.price;
-  list.forEach(({ price, bolo, time, density, size, dose }) => {
-    const priceXMl = getDrugPricePerMilliliter(price, size)
-    if (bolo) {
-      total += ((weight * bolo.value) / density.value) * priceXMl;
-    }
-    if (!dose) {
-      return total;
-    }
-    if (dose.unique) {
-      if (density) {
-        total += ((weight * dose.value) / density.value) * priceXMl;
-      } else {
-        total += weight * dose.value * priceXMl;
-      }
-    } else {
-      total += ((weight * dose.value) / density.value) * priceXMl * getTime(time, dose.unit);
-    }
-  });
+export const getBudget = (asa, weight, list) => list.reduce((acc, drug) => acc + getDrugPrice(weight, drug), asa.price);
+
+export const getMl = (weight, dose, density, time = 1, unit = 'h') => {
+  if (!density) {
+    return weight * dose
+  }
+  return ((weight * dose) / density) * getTime(time, unit);
+}
+
+export const getDrugPrice = (weight, { price, bolo, time, density, size, dose }) => {
+  let total = 0;
+  const priceXMl = getDrugPricePerMilliliter(price, size)
+  if (bolo) {
+    total += getMl(weight, bolo.value, density.value) * priceXMl;
+  }
+  if (dose) {
+    const d = density ? density.value : null;
+    const t = dose.unique ? 1 : time;
+    const unit = dose.unit ? dose.unit : null;
+    total += getMl(weight, dose.value, d, t, unit) * priceXMl;
+  }
   return total;
+}
+
+
+export const addDrugMl = (weight, drug) => {
+  const { bolo, density, dose, time } = drug;
+  if (bolo) {
+    bolo.ml = getMl(weight, bolo.value, density.value).toFixed(2);
+  }
+  if (dose) {
+    dose.ml = getMl(weight, dose.value, density?.value, time, dose.unit).toFixed(2);
+  }
+  return drug;
 }
