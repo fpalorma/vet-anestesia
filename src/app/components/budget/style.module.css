@@ -1,0 +1,19 @@
+.title {
+  color: white;
+  font-size: 18px;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.divider {
+  background-color: white;
+  margin-top: 0.5rem;
+}
+
+.asa {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-right: 10px;
+}
