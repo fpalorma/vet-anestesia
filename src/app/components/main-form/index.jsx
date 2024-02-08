@@ -18,17 +18,17 @@ const MainForm = ({ asa, disableWeight }) => {
         control={control}
         name='asa'
         rules={{ 
-          required: 'El asa médica es requerida',
+          required: 'El asa anestésica es requerida',
         }}
         defaultValue=''
         render={({ field }) => (
           <FormControl fullWidth margin='normal' error={!!errors.asa}>
-            <InputLabel id="asa-label">Asa medica</InputLabel>
+            <InputLabel id="asa-label">Asa anestésica</InputLabel>
             <Select
               {...field}
               labelId="asa-label"
               id="asa"
-              label="Asa médica"
+              label="Asa anestésica"
             >
               {asas.map((asa) => (
                 <MenuItem key={asa.id} value={asa.id}>
