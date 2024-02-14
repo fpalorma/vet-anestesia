@@ -3,6 +3,7 @@ import { jsPDF } from "jspdf";
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import ReceiptOutlinedIcon from '@mui/icons-material/ReceiptOutlined';
+import DownloadIcon from '@mui/icons-material/Download';
 import Button from "@mui/material/Button";
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -67,12 +68,12 @@ const Budget = ({ asa, drugs = [], disabled, weight }) => {
       >
         Presupuestar
       </Button>
-      {/* TODO: add margin top and disabled behavior when there is no budget and change button icon */}
+      {/* TODO: add margin top and disabled behavior when there is no budget*/}
       <Button
         fullWidth 
         variant="contained"
         onClick={exportPdf}
-        startIcon={<ReceiptOutlinedIcon />}
+        startIcon={<DownloadIcon />}
         disabled={disabled}
       >
         Exportar
@@ -80,7 +81,7 @@ const Budget = ({ asa, drugs = [], disabled, weight }) => {
       {
         !!budget && <Box sx={{ mt: 2 }} ref={ref}>
           <Paper elevation={3} sx={{ p: 2, bgcolor: 'primary.main' }}>
-            {/* TODO: check font family, should be Roboto */}
+            
             <Box className={styles.title}>Presupuesto</Box>
             <List dense={true}>
               {
