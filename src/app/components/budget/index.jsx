@@ -32,9 +32,18 @@ const Budget = ({ asa, drugs = [], disabled, weight }) => {
     const doc = new jsPDF();
     const { current } = ref;
 
+    const actualDate = ()=>{
+      const date = new Date();
+      let day = date.getDate();
+      let month = date.getMonth();
+      let year = date.getFullYear();
+      return day + "/" + (month+1) + "/" + year
+    }
+    
+
     doc.html(current, {
       callback: function (doc) {
-        doc.save('Presupuesto.pdf'); // TODO: add date to the name of the file
+        doc.save(`Presupuesto ${actualDate()}.pdf`); 
       },
       margin: [0, 30, 0, 30],
       width: 150,
