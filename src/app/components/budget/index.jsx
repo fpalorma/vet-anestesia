@@ -68,13 +68,14 @@ const Budget = ({ asa, drugs = [], disabled, weight }) => {
       >
         Presupuestar
       </Button>
-      {/* TODO: add margin top and disabled behavior when there is no budget*/}
+      {/* TODO: add disabled behavior when there is no budget*/}
       <Button
         fullWidth 
         variant="contained"
         onClick={exportPdf}
         startIcon={<DownloadIcon />}
         disabled={disabled}
+        className={styles.marginBtn}
       >
         Exportar
       </Button>
