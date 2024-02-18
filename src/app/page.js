@@ -12,6 +12,9 @@ import MainForm from './components/main-form';
 import { addDrugMl } from './utils/drugs';
 import asas from "./constants/asas.json";
 import styles from './page.module.css'
+import BudgetItem from './components/budget/budget-item';
+import { ListItem } from '@mui/material';
+import Total from './components/budget/total';
 
 export default function Home() {
   const [drugs, setDrugs] = useState([]);
@@ -24,7 +27,7 @@ export default function Home() {
   const { weight } = getValues();
   const { asa } = watch();
 
-  const selectedAsa = asas.find(a=> a.id === asa);
+  const selectedAsa = asas.find(a => a.id === asa);
 
   const handleOnAdd = (drug) => {
     /* Check weight and calculate ml here with the weight */
@@ -33,7 +36,7 @@ export default function Home() {
       setDrugs(list);
       return true;
     }
-    
+
     const { trigger } = mainForm;
     trigger('weight');
     return false;
@@ -49,7 +52,7 @@ export default function Home() {
     mainForm.reset();
     drugForm.reset();
   };
-  
+
   return (
     <main className={styles.main}>
       <FormProvider {...mainForm}>
@@ -62,7 +65,7 @@ export default function Home() {
         <DrugForm handleOnAddDrug={handleOnAdd} selectedDrugs={drugs} />
       </FormProvider>
       <DrugList list={drugs} handleOnDelete={handleOnDelete} />
-      <Budget 
+      <Budget
         asa={selectedAsa}
         weight={weight}
         drugs={drugs}

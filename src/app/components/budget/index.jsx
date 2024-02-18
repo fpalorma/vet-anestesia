@@ -20,7 +20,7 @@ const AsaSecondaryText = ({ value }) => (
   <span className={styles.asa}>{value}</span>
 );
 
-const Budget = ({ asa, drugs = [], disabled, weight }) => {
+const Budget = ({ asa, drugs = [], disabled, weight}) => {
   const [budget, setBudget] = useState(0);
   const ref = useRef(null);
 
@@ -68,13 +68,13 @@ const Budget = ({ asa, drugs = [], disabled, weight }) => {
       >
         Presupuestar
       </Button>
-      {/* TODO: add disabled behavior when there is no budget*/}
+      
       <Button
         fullWidth 
         variant="contained"
         onClick={exportPdf}
         startIcon={<DownloadIcon />}
-        disabled={disabled}
+        disabled={!budget}
         className={styles.marginBtn}
       >
         Exportar
