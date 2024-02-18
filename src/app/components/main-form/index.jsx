@@ -20,7 +20,7 @@ const MainForm = ({ asa, disableWeight }) => {
         rules={{ 
           required: 'El asa anestésica es requerida',
         }}
-        defaultValue= ''
+        defaultValue=''
         render={({ field }) => (
           <FormControl fullWidth margin='normal' error={!!errors.asa}>
             <InputLabel id="asa-label">Asa anestésica</InputLabel>
