@@ -14,6 +14,7 @@ import BudgetItem from './budget-item';
 import Price from './price';
 import Total from './total';
 import { getBudget } from '../../utils/drugs';
+import { actualDate } from '../../utils/date';
 import styles from './style.module.css';
 
 const AsaSecondaryText = ({ value }) => (
@@ -33,13 +34,7 @@ const Budget = ({ asa, drugs = [], disabled, weight}) => {
     const doc = new jsPDF();
     const { current } = ref;
 
-    const actualDate = ()=>{
-      const date = new Date();
-      let day = date.getDate();
-      let month = date.getMonth();
-      let year = date.getFullYear();
-      return day + "/" + (month+1) + "/" + year
-    }
+    
     
 
     doc.html(current, {
