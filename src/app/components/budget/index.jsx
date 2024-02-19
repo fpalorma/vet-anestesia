@@ -75,7 +75,7 @@ const Budget = ({ asa, drugs = [], disabled, weight}) => {
         onClick={exportPdf}
         startIcon={<DownloadIcon />}
         disabled={!budget}
-        className={styles.marginBtn}
+        sx={{mt: 2}}
       >
         Exportar
       </Button>
