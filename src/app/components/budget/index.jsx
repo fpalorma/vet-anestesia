@@ -38,9 +38,7 @@ const Budget = ({ asa, drugs = [], disabled, weight}) => {
     
 
     doc.html(current, {
-      callback: function (doc) {
-        doc.save(`Presupuesto ${actualDate()}.pdf`); 
-      },
+      callback: (doc)=> doc.save(`Presupuesto ${actualDate()}.pdf`),
       margin: [0, 30, 0, 30],
       width: 150,
       windowWidth: current.clientWidth
