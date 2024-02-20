@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { jsPDF } from "jspdf";
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import ReceiptOutlinedIcon from '@mui/icons-material/ReceiptOutlined';
+import DownloadIcon from '@mui/icons-material/Download';
 import Button from "@mui/material/Button";
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -12,18 +14,35 @@ import BudgetItem from './budget-item';
 import Price from './price';
 import Total from './total';
 import { getBudget } from '../../utils/drugs';
+import { actualDate } from '../../utils/date';
 import styles from './style.module.css';
 
 const AsaSecondaryText = ({ value }) => (
   <span className={styles.asa}>{value}</span>
 );
 
-const Budget = ({ asa, drugs = [], disabled, weight }) => {
+const Budget = ({ asa, drugs = [], disabled, weight}) => {
   const [budget, setBudget] = useState(0);
+  const ref = useRef(null);
 
   const handleOnQuote = () => {
     const total = getBudget(asa, weight, drugs);
     setBudget(total);
+  };
+
+  const exportPdf = () => {
+    const doc = new jsPDF();
+    const { current } = ref;
+
+    
+    
+
+    doc.html(current, {
+      callback: (doc)=> doc.save(`Presupuesto ${actualDate()}.pdf`),
+      margin: [0, 30, 0, 30],
+      width: 150,
+      windowWidth: current.clientWidth
+    });
   };
 
   /* This hides the budget if user changes the list of drugs or the asa */
@@ -42,9 +61,21 @@ const Budget = ({ asa, drugs = [], disabled, weight }) => {
       >
         Presupuestar
       </Button>
+      
+      <Button
+        fullWidth 
+        variant="contained"
+        onClick={exportPdf}
+        startIcon={<DownloadIcon />}
+        disabled={!budget}
+        sx={{mt: 2}}
+      >
+        Exportar
+      </Button>
       {
-        !!budget && <Box sx={{ mt: 2 }}>
+        !!budget && <Box sx={{ mt: 2 }} ref={ref}>
           <Paper elevation={3} sx={{ p: 2, bgcolor: 'primary.main' }}>
+            
             <Box className={styles.title}>Presupuesto</Box>
             <List dense={true}>
               {
