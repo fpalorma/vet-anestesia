@@ -4,7 +4,7 @@
     "bolo": { "value": 2, "unit": "mg/kg" },
     "dose": { "value": 0.15, "unit": "mg/kg/min", "unique": false },
     "density": { "value": 20, "unit": "mg/ml" },
-    "price": 14000,
+    "price": 20521,
     "size": { "value": 50, "unit": "ml" },
     "id": "e642f460-8ba3-4f1c-a50b-9cf9a8e9efb7"
   },
@@ -12,7 +12,7 @@
     "label": "Remi",
     "dose": { "value": 0.4, "unit": "mcg/kg/min", "unique": false },
     "density": { "value": 10, "unit": "mcg/ml" },
-    "price": 7600,
+    "price": 10000,
     "size": { "value": 500, "unit": "ml" },
     "id": "a7351c87-94af-4fcf-9f11-0e4c8b76c0df"
   },
@@ -21,7 +21,7 @@
     "bolo": { "value": 5, "unit": "mcg/kg" },
     "dose": { "value": 3, "unit": "mcg/kg/hr", "unique": false },
     "density": { "value": 50, "unit": "mcg/ml" },
-    "price": 1500,
+    "price": 1800,
     "size": { "value": 5, "unit": "ml" },
     "id": "cbdfca25-b370-417d-b3c1-32f0f660b97d"
   },
@@ -85,7 +85,7 @@
     "label": "Nora",
     "dose": { "value": 3, "unit": "mcg/kg/min", "unique": false },
     "density": { "value": 1, "unit": "mcg/ml" },
-    "price": 500,
+    "price": 917,
     "size": { "value": 500, "unit": "ml" },
     "id": "7c5e5ec2-72c0-4d64-8d08-85b9a4e1c758"
   },
@@ -102,7 +102,7 @@
     "bolo": { "value": 1, "unit": "mcg/kg" },
     "dose": { "value": 0.5, "unit": "mcg/kg/hr", "unique": false },
     "density": { "value": 100, "unit": "mcg/ml" },
-    "price": 2870,
+    "price": 4172,
     "size": { "value": 2, "unit": "ml" },
     "id": "e4e558f1-11ed-4e50-bde8-5397b0e56e04"
   },
