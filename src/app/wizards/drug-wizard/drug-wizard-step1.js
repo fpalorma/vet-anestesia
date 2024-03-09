@@ -8,6 +8,7 @@ import DrugForm from '../../components/drug-form';
 import asas from "../../constants/asas.json";
 import Button from "@mui/material/Button";
 import { addDrugMl } from '../../utils/drugs';
+import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
 
 export default function DrugWizardStep1({handleNextStep,label,setSelectedAsa,drugs,setDrugs,setWeight}) {
     
@@ -43,8 +44,9 @@ export default function DrugWizardStep1({handleNextStep,label,setSelectedAsa,dru
   setSelectedAsa(selectedAsa)
 
   const restore = () => { 
-      reset()
-      resetDrugs()
+    mainForm.reset()
+    drugForm.reset()
+    setDrugs([])
   }
 
   return (
@@ -60,15 +62,16 @@ export default function DrugWizardStep1({handleNextStep,label,setSelectedAsa,dru
         <DrugForm handleOnAddDrug={handleOnAdd} selectedDrugs={drugs} />
       </FormProvider>
       <Button
-      sx={{ marginTop:1 }}
-      className='mt-1'
-        fullWidth 
+        fullWidth
+        sx={{ mt: 2 }}
         variant="contained"
         onClick={restore}
-        disabled={false}
+        color="error"
+        startIcon={<CleaningServicesIcon />}
       >
-        Reestablecer
+        Limpiar
       </Button>
+
       <Button
       sx={{ marginTop:1 }}
       className='mt-1'
