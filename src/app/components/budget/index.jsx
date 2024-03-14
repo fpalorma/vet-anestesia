@@ -34,9 +34,6 @@ const Budget = ({ asa, drugs = [], disabled, weight}) => {
     const doc = new jsPDF();
     const { current } = ref;
 
-    
-    
-
     doc.html(current, {
       callback: (doc)=> doc.save(`Presupuesto ${actualDate()}.pdf`),
       margin: [0, 30, 0, 30],

@@ -12,9 +12,6 @@ import MainForm from './components/main-form';
 import { addDrugMl } from './utils/drugs';
 import asas from "./constants/asas.json";
 import styles from './page.module.css'
-import BudgetItem from './components/budget/budget-item';
-import { ListItem } from '@mui/material';
-import Total from './components/budget/total';
 
 export default function Home() {
   const [drugs, setDrugs] = useState([]);
