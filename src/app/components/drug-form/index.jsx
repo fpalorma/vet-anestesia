@@ -41,6 +41,8 @@ const DrugForm = ({ handleOnAddDrug, selectedDrugs }) => {
     trigger(['dose', 'bolo']);
   }
 
+
+
   const handleOnAdd = () => {
     /* I create a copy with the basic data of the drug and then I add 
      the dose, bole and time according to the conditions below */
@@ -67,7 +69,7 @@ const DrugForm = ({ handleOnAddDrug, selectedDrugs }) => {
   const isTimeDisabled = checkTimeDisabled(drug, isDose);
   return (
     <>
-      <Controller 
+      <Controller
         control={control}
         name='drug'
         defaultValue={null}
@@ -77,14 +79,14 @@ const DrugForm = ({ handleOnAddDrug, selectedDrugs }) => {
         render={({ field }) => (
           <Autocomplete
             disablePortal
-            {...field} 
+            {...field}
             isOptionEqualToValue={(option, value) => value.id === option.id}
             onChange={(_, newDrug) => {
               field.onChange(newDrug);
               handleOnDrugChange(newDrug);
             }}
             options={options}
-            renderInput={(params) => 
+            renderInput={(params) =>
               <FormControl fullWidth margin='normal'>
                 <TextField {...params} label="Droga" />
               </FormControl>
@@ -96,7 +98,7 @@ const DrugForm = ({ handleOnAddDrug, selectedDrugs }) => {
         <>
           <FormControl fullWidth margin='normal' error={!!errors.isBoloDose}>
             <FormGroup className={styles.flexRow}>
-              <Controller 
+              <Controller
                 control={control}
                 name='isBoloDose'
                 defaultValue={[true, true]}
@@ -106,11 +108,11 @@ const DrugForm = ({ handleOnAddDrug, selectedDrugs }) => {
                 }}
                 render={({ field }) => (
                   <>
-                    <FormControlLabel 
+                    <FormControlLabel
                       control={<Switch {...field} onChange={() => field.onChange([!field.value[0], field.value[1]])} checked={field.value[0]} />}
                       label="Bolo"
                     />
-                    <FormControlLabel 
+                    <FormControlLabel
                       control={<Switch {...field} onChange={() => field.onChange([field.value[0], !field.value[1]])} checked={field.value[1]} />}
                       label="Mantenimiento"
                     />
@@ -120,10 +122,10 @@ const DrugForm = ({ handleOnAddDrug, selectedDrugs }) => {
             </FormGroup>
             <FormHelperText id="bolo-helper">{errors.isBoloDose ? 'Se debe seleccionar al menos uno' : null}</FormHelperText>
           </FormControl>
-          <Controller 
+          <Controller
             control={control}
             name='bolo'
-            rules={{ 
+            rules={{
               required: 'La dosis del bolo es requerida',
               pattern: {
                 value: /^(0*[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$/g,
@@ -152,10 +154,10 @@ const DrugForm = ({ handleOnAddDrug, selectedDrugs }) => {
           </Controller>
         </>
       }
-      <Controller 
+      <Controller
         control={control}
         name='dose'
-        rules={{ 
+        rules={{
           required: 'La dosis es requerida',
           pattern: {
             value: /^(0*[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$/g,
@@ -182,10 +184,10 @@ const DrugForm = ({ handleOnAddDrug, selectedDrugs }) => {
         )}
       >
       </Controller>
-      <Controller 
+      <Controller
         control={control}
         name='time'
-        rules={{ 
+        rules={{
           required: 'El tiempo es requerido',
           pattern: {
             value: /^(0*[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$/g,
@@ -214,7 +216,7 @@ const DrugForm = ({ handleOnAddDrug, selectedDrugs }) => {
       >
       </Controller>
       <Button
-        fullWidth 
+        fullWidth
         variant="contained"
         onClick={handleOnAdd}
         startIcon={<AddCircleOutlineOutlinedIcon />}

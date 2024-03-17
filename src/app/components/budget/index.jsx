@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react';
 import { jsPDF } from "jspdf";
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
-import ReceiptOutlinedIcon from '@mui/icons-material/ReceiptOutlined';
 import DownloadIcon from '@mui/icons-material/Download';
 import Button from "@mui/material/Button";
 import List from '@mui/material/List';
@@ -47,9 +46,18 @@ const Budget = ({ asa, drugs = [], disabled, weight}) => {
     setBudget(0);
   },[asa, drugs]);
 
+
+  useEffect(() => {
+    if(asa && weight && drugs){
+      handleOnQuote()
+    }
+  });
+
+
+
   return (
     <>
-      <Button
+      {/* <Button
         fullWidth 
         variant="contained"
         onClick={handleOnQuote}
@@ -58,17 +66,8 @@ const Budget = ({ asa, drugs = [], disabled, weight}) => {
       >
         Presupuestar
       </Button>
-      
-      <Button
-        fullWidth 
-        variant="contained"
-        onClick={exportPdf}
-        startIcon={<DownloadIcon />}
-        disabled={!budget}
-        sx={{mt: 2}}
-      >
-        Exportar
-      </Button>
+       */}
+
       {
         !!budget && <Box sx={{ mt: 2 }} ref={ref}>
           <Paper elevation={3} sx={{ p: 2, bgcolor: 'primary.main' }}>
@@ -93,6 +92,16 @@ const Budget = ({ asa, drugs = [], disabled, weight}) => {
           </Paper>
         </Box>
       }
+            <Button
+        fullWidth 
+        variant="contained"
+        onClick={exportPdf}
+        startIcon={<DownloadIcon />}
+        disabled={!budget}
+        sx={{mt: 2}}
+      >
+        Exportar
+      </Button>
     </>
   )
 };
