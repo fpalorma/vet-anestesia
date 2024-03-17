@@ -4,11 +4,12 @@ import { useContext } from "react";
 import DrugForm from "@/app/components/drug-form";
 import { addDrugMl } from '../../utils/drugs';
 import { Box, Button } from "@mui/material";
-
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 
 
 export default function DrugWizardStep2() {
-    const {  drugObj, weightObj, stepObj } = useContext(WizardContext);
+    const { drugObj, weightObj, stepObj } = useContext(WizardContext);
     const [weightState,] = weightObj;
     const [, setActiveStep] = stepObj;
     const [drugs, setDrugs] = drugObj;
@@ -37,21 +38,23 @@ export default function DrugWizardStep2() {
             </FormProvider>
 
             <Box
-            sx={{
-                marginTop: 3,
-                display: 'flex',
-                justifyContent: 'flex-end' 
-
-            }}
+                sx={{
+                    marginTop: 3,
+                    display: 'flex',
+                    justifyContent: 'flex-end'
+                }}
             >
-            <Button sx={{marginX:1}} variant="contained" onClick={() => setActiveStep(0)} >
-                Volver
-            </Button>
-            <Button variant="contained" onClick={() => setActiveStep(2)} >
-                Siguiente
-            </Button>
+                <Button
+                    startIcon={<NavigateBeforeIcon />}
+                    sx={{ marginX: 1 }} variant="contained" onClick={() => setActiveStep(0)} >
+                    Volver
+                </Button>
+                <Button
+                    startIcon={<NavigateNextIcon />}
+                    variant="contained" onClick={() => setActiveStep(2)} >
+                    Siguiente
+                </Button>
             </Box>
-
         </Box>
     )
 }
