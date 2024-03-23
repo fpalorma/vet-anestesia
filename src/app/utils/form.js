@@ -22,7 +22,7 @@ export const checkTimeDisabled = (drug, isDose) => {
   if (drug?.dose?.unique) {
     return true;
   }
-  
+
   if (!drug?.dose?.unique && !isDose) {
     return true;
   }
