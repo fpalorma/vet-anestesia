@@ -1,30 +1,34 @@
-'use client';
-import { useState } from 'react';
-import { useForm, FormProvider } from "react-hook-form"
+"use client";
+import { useState } from "react";
+import { useForm, FormProvider } from "react-hook-form";
 import Button from "@mui/material/Button";
-import Divider from '@mui/material/Divider';
-import Chip from '@mui/material/Chip';
-import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
-import DrugList from './components/drug-list';
-import Budget from './components/budget';
-import DrugForm from './components/drug-form';
-import MainForm from './components/main-form';
-import { addDrugMl } from './utils/drugs';
+import Divider from "@mui/material/Divider";
+import Chip from "@mui/material/Chip";
+import CleaningServicesIcon from "@mui/icons-material/CleaningServices";
+import DrugList from "./components/drug-list";
+import Budget from "./components/budget";
+import DrugForm from "./components/drug-form";
+import MainForm from "./components/main-form";
+import { addDrugMl } from "./utils/drugs";
 import asas from "./constants/asas.json";
-import styles from './page.module.css'
+import styles from "./page.module.css";
 
 export default function Home() {
   const [drugs, setDrugs] = useState([]);
 
   const mainForm = useForm({ mode: "onBlur" });
   const drugForm = useForm({ mode: "onBlur" });
-  const { getValues, formState: { isDirty, isValid }, watch } = mainForm;
+  const {
+    getValues,
+    formState: { isDirty, isValid },
+    watch,
+  } = mainForm;
 
   /* asa can change after budget calculation but weight not */
   const { weight } = getValues();
   const { asa } = watch();
 
-  const selectedAsa = asas.find(a => a.id === asa);
+  const selectedAsa = asas.find((a) => a.id === asa);
 
   const handleOnAdd = (drug) => {
     /* Check weight and calculate ml here with the weight */
@@ -35,12 +39,12 @@ export default function Home() {
     }
 
     const { trigger } = mainForm;
-    trigger('weight');
+    trigger("weight");
     return false;
   };
 
   const handleOnDelete = (id) => {
-    const list = drugs.filter(row => row.id !== id);
+    const list = drugs.filter((row) => row.id !== id);
     setDrugs(list);
   };
 
@@ -79,5 +83,5 @@ export default function Home() {
         Limpiar
       </Button>
     </main>
-  )
+  );
 }

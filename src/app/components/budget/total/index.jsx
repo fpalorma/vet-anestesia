@@ -1,6 +1,6 @@
-import Grid from '@mui/material/Grid';
-import Price from '../price';
-import styles from './style.module.css';
+import Grid from "@mui/material/Grid";
+import Price from "../price";
+import styles from "./style.module.css";
 
 const Total = ({ value }) => (
   <Grid
@@ -13,6 +13,6 @@ const Total = ({ value }) => (
     <span>Total</span>
     <Price value={value} />
   </Grid>
-)
+);
 
 export default Total;
