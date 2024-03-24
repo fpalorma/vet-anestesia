@@ -17,8 +17,10 @@ import styles from './style.module.css';
 import { checkTimeDisabled } from "@/app/utils/form";
 
 const DrugForm = ({ handleOnAddDrug, selectedDrugs }) => {
-  const { control, setValue, reset, watch, getValues, resetField, trigger } = useFormContext();
-  const { isDirty, isValid, errors } = useFormState({ control });
+  const { control,formState: { errors,isDirty,isValid }, setValue, reset, watch, getValues, resetField, trigger } = useFormContext();
+
+
+//  const { isDirty, isValid, errors } = useFormState({ control });
 
   const [isBoloDose = [true, true], drug] = watch(['isBoloDose', 'drug']);
   const [isBolo, isDose] = isBoloDose;
@@ -74,24 +76,29 @@ const DrugForm = ({ handleOnAddDrug, selectedDrugs }) => {
         name='drug'
         defaultValue={null}
         rules={{
-          required: true
+          required: 'Debe Elegir al menos una droga'
         }}
         render={({ field }) => (
-          <Autocomplete
-            disablePortal
-            {...field}
-            isOptionEqualToValue={(option, value) => value.id === option.id}
-            onChange={(_, newDrug) => {
-              field.onChange(newDrug);
-              handleOnDrugChange(newDrug);
-            }}
-            options={options}
-            renderInput={(params) =>
-              <FormControl fullWidth margin='normal'>
-                <TextField {...params} label="Droga" />
-              </FormControl>
-            }
-          />
+          <FormControl fullWidth margin='normal' error={!!errors.drug}>
+
+            <Autocomplete
+              disablePortal
+              {...field}
+              isOptionEqualToValue={(option, value) => value.id === option.id}
+              onChange={(_, newDrug) => {
+                field.onChange(newDrug);
+                handleOnDrugChange(newDrug);
+              }}
+              options={options}
+              renderInput={(params) =>
+                <FormControl fullWidth margin='normal' error={!!errors.drug}>
+                  <TextField {...params} label="Droga" />
+                </FormControl>
+              }
+            />
+            <FormHelperText id="time-helper">{errors.drug?.message}</FormHelperText>
+          </FormControl>
+
         )}
       ></Controller>
       {drug?.bolo &&

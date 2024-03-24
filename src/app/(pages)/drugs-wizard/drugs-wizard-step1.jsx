@@ -8,13 +8,12 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 
 export default function DrugWizardStep1() {
     const mainForm = useForm({ mode: "onBlur" });
-    const { getValues, formState: { isDirty, isValid, errors }, watch, reset, handleSubmit, control } = mainForm;
+    const { watch, handleSubmit } = mainForm;
 
-    const { asaObj, drugObj, weightObj, stepObj } = useContext(WizardContext);
+    const { asaObj, weightObj, stepObj } = useContext(WizardContext);
     const [, setWeightState] = weightObj;
     const [selectedAsa, setSelectedAsa] = asaObj;
     const [, setActiveStep] = stepObj;
-    const [drugs,] = drugObj;
 
     const { weight } = watch();
     setWeightState(weight)
@@ -26,7 +25,7 @@ export default function DrugWizardStep1() {
     return (
         <>
             <FormProvider {...mainForm}>
-                <MainForm asa={selectedAsa} disableWeight={!!drugs.length} />
+                <MainForm asa={selectedAsa} disableWeight={false} />
             </FormProvider>
             <Box
                 sx={{
@@ -36,9 +35,9 @@ export default function DrugWizardStep1() {
 
                 }}
             >
-                <Button 
-                startIcon={<NavigateNextIcon />}
-                variant="contained" onClick={handleSubmit(() => setActiveStep(1))} >
+                <Button
+                    startIcon={<NavigateNextIcon />}
+                    variant="contained" onClick={handleSubmit(() => setActiveStep(1))} >
                     Siguiente
                 </Button>
             </Box>

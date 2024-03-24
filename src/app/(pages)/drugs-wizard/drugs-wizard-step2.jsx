@@ -6,6 +6,8 @@ import { addDrugMl } from '../../utils/drugs';
 import { Box, Button } from "@mui/material";
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
+import Badge from '@mui/material/Badge';
+import VaccinesIcon from '@mui/icons-material/Vaccines';
 
 
 export default function DrugWizardStep2() {
@@ -14,9 +16,15 @@ export default function DrugWizardStep2() {
     const [, setActiveStep] = stepObj;
     const [drugs, setDrugs] = drugObj;
 
-
     const drugForm = useForm({ mode: "onBlur" });
+    const { handleSubmit, formState } = drugForm;
 
+    const checkBeforeNextPage = () => {
+        console.log(drugs.length)
+        console.log(formState.errors)
+
+        setActiveStep(2)
+    }
 
     const handleOnAdd = (drug) => {
         /* Check weight and calculate ml here with the weight */
@@ -33,6 +41,17 @@ export default function DrugWizardStep2() {
 
     return (
         <Box>
+            <Box
+                sx={{
+                    marginTop: 3,
+                    display: 'flex',
+                    justifyContent: 'flex-end'
+                }}
+            >
+                {drugs.length !== 0 && (<Badge badgeContent={drugs.length} color="primary">
+                    <VaccinesIcon />
+                </Badge>)}
+            </Box>
             <FormProvider {...drugForm}>
                 <DrugForm handleOnAddDrug={handleOnAdd} selectedDrugs={drugs} />
             </FormProvider>
@@ -51,7 +70,11 @@ export default function DrugWizardStep2() {
                 </Button>
                 <Button
                     startIcon={<NavigateNextIcon />}
-                    variant="contained" onClick={() => setActiveStep(2)} >
+                    variant="contained"
+                    onClick={() => checkBeforeNextPage()}
+                    //onClick={handleSubmit(() => setActiveStep(2))} 
+                    disabled={drugs.length === 0}
+                >
                     Siguiente
                 </Button>
             </Box>

@@ -10,19 +10,14 @@ export default function DrugWizardStep3() {
     const [, setActiveStep] = stepObj;
     const [drugs, setDrugs] = drugObj;
 
-
-
     const handleOnDelete = (id) => {
         const list = drugs.filter(row => row.id !== id);
         setDrugs(list);
     };
 
-
-
     return (
         <Box>
             <DrugList list={drugs} handleOnDelete={handleOnDelete} />
-
             <Box
                 sx={{
                     marginTop: 3,
@@ -39,7 +34,7 @@ export default function DrugWizardStep3() {
                 <Button
                     startIcon={<PaidIcon />}
                     variant="contained" onClick={() => setActiveStep(3)} >
-                    Ver presupuesto
+                    Presupuesto
                 </Button>
             </Box>
         </Box>
