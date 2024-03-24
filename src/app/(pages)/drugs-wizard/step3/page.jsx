@@ -1,14 +1,17 @@
-import { WizardContext } from "./wizard-context";
+'use client'
+import { WizardContext } from "../wizard-context";
 import { useContext } from "react";
 import { Box, Button } from "@mui/material";
 import DrugList from "@/app/components/drug-list";
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import PaidIcon from '@mui/icons-material/Paid';
+import { useRouter } from "next/navigation";
 
 export default function DrugWizardStep3() {
-    const { drugObj, stepObj } = useContext(WizardContext);
-    const [, setActiveStep] = stepObj;
+    const { drugObj } = useContext(WizardContext);
     const [drugs, setDrugs] = drugObj;
+
+    const router = useRouter();
 
     const handleOnDelete = (id) => {
         const list = drugs.filter(row => row.id !== id);
@@ -28,12 +31,12 @@ export default function DrugWizardStep3() {
             >
                 <Button
                     startIcon={<NavigateBeforeIcon />}
-                    sx={{ marginX: 1 }} variant="contained" onClick={() => setActiveStep(1)} >
+                    sx={{ marginX: 1 }} variant="contained" onClick={() => router.push('step2')} >
                     Volver
                 </Button>
                 <Button
                     startIcon={<PaidIcon />}
-                    variant="contained" onClick={() => setActiveStep(3)} >
+                    variant="contained" onClick={() => router.push('./step4')} >
                     Presupuesto
                 </Button>
             </Box>

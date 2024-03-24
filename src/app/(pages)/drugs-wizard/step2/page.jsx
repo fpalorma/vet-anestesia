@@ -1,29 +1,28 @@
+'use client'
 import { useForm, FormProvider } from "react-hook-form"
-import { WizardContext } from "./wizard-context";
+import { WizardContext } from "../wizard-context";
 import { useContext } from "react";
 import DrugForm from "@/app/components/drug-form";
-import { addDrugMl } from '../../utils/drugs';
+import { addDrugMl } from '../../../utils/drugs';
 import { Box, Button } from "@mui/material";
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import Badge from '@mui/material/Badge';
 import VaccinesIcon from '@mui/icons-material/Vaccines';
+import { useRouter } from "next/navigation";
 
 
 export default function DrugWizardStep2() {
-    const { drugObj, weightObj, stepObj } = useContext(WizardContext);
+    const { drugObj, weightObj } = useContext(WizardContext);
     const [weightState,] = weightObj;
-    const [, setActiveStep] = stepObj;
     const [drugs, setDrugs] = drugObj;
+    const router = useRouter();
 
     const drugForm = useForm({ mode: "onBlur" });
     const { handleSubmit, formState } = drugForm;
 
     const checkBeforeNextPage = () => {
-        console.log(drugs.length)
-        console.log(formState.errors)
-
-        setActiveStep(2)
+        router.push('./step3')
     }
 
     const handleOnAdd = (drug) => {
@@ -34,9 +33,6 @@ export default function DrugWizardStep2() {
             return true;
         }
 
-        // const { trigger } = mainForm;
-        // trigger('weight');
-        // return false;
     };
 
     return (
@@ -65,14 +61,13 @@ export default function DrugWizardStep2() {
             >
                 <Button
                     startIcon={<NavigateBeforeIcon />}
-                    sx={{ marginX: 1 }} variant="contained" onClick={() => setActiveStep(0)} >
+                    sx={{ marginX: 1 }} variant="contained" onClick={() => router.push('./step1')} >
                     Volver
                 </Button>
                 <Button
                     startIcon={<NavigateNextIcon />}
                     variant="contained"
-                    onClick={() => checkBeforeNextPage()}
-                    //onClick={handleSubmit(() => setActiveStep(2))} 
+                    onClick={() => router.push('./step3')}
                     disabled={drugs.length === 0}
                 >
                     Siguiente

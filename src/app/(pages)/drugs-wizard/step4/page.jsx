@@ -1,22 +1,24 @@
-import { WizardContext } from "./wizard-context";
+
+'use client'
+import { WizardContext } from "../wizard-context";
 import { useContext } from "react";
 import { Box, Button } from "@mui/material";
 import Budget from "@/app/components/budget";
 import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
-
+import { useRouter } from "next/navigation";
 
 export default function DrugWizardStep4() {
-    const { asaObj, drugObj, weightObj, stepObj } = useContext(WizardContext);
+    const { asaObj, drugObj, weightObj } = useContext(WizardContext);
     const [weightState, setWeightState] = weightObj;
     const [selectedAsa, setSelectedAsa] = asaObj;
-    const [, setActiveStep] = stepObj;
     const [drugs, setDrugs] = drugObj;
-
+    const router = useRouter();
+    
     const limpiar = () => {
         setSelectedAsa();
         setDrugs([]);
         setWeightState();
-        setActiveStep(0)
+        router.push('./step1')
     }
 
     return (
@@ -42,7 +44,7 @@ export default function DrugWizardStep4() {
                     variant="contained" onClick={() => limpiar()} >
                     Limpiar
                 </Button>
-                <Button sx={{ marginX: 1 }} variant="contained" onClick={() => setActiveStep(1)} >
+                <Button sx={{ marginX: 1 }} variant="contained" onClick={() => router.push('./step3')} >
                     Volver
                 </Button>
             </Box>
