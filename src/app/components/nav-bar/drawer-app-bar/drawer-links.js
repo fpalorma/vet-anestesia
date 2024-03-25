@@ -10,7 +10,7 @@ export const Links =  [
 },
 {
     text: 'Wizard',
-    path: '/drugs-wizard',
+    path: '/drugs-wizard/step1',
     icon: <VaccinesIcon />
 },
 {
