@@ -2,7 +2,7 @@
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select  from '@mui/material/Select';
+import Select from '@mui/material/Select';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputAdornment from '@mui/material/InputAdornment';
 import FormHelperText from '@mui/material/FormHelperText';
@@ -14,13 +14,13 @@ const MainForm = ({ asa, disableWeight }) => {
 
   return (
     <>
-      <Controller 
+      <Controller
         control={control}
         name='asa'
-        rules={{ 
+        rules={{
           required: 'El asa anestésica es requerida',
         }}
-        defaultValue=''
+        defaultValue={asa?.id || ''}
         render={({ field }) => (
           <FormControl fullWidth margin='normal' error={!!errors.asa}>
             <InputLabel id="asa-label">Asa anestésica</InputLabel>
@@ -41,10 +41,10 @@ const MainForm = ({ asa, disableWeight }) => {
         )}
       >
       </Controller>
-      <Controller 
+      <Controller
         control={control}
         name='weight'
-        rules={{ 
+        rules={{
           required: 'El peso es requerido',
           pattern: {
             value: /^(0*[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$/g,

@@ -13,21 +13,16 @@ export default function DrugWizardStep1() {
     const mainForm = useForm({ mode: "onBlur" });
     const { watch, handleSubmit } = mainForm;
 
-    const { asaObj, weightObj,drugObj } = useContext(WizardContext);
+    const { asaObj, weightObj } = useContext(WizardContext);
     const [, setWeightState] = weightObj;
     const [selectedAsa, setSelectedAsa] = asaObj;
-    const [drugs] = drugObj;
 
     const router = useRouter()
 
     const { weight } = watch();
 
-    // if(drugs.length > 0){
-    //     alert("drugs tiener dro")
-    // }
     setWeightState(weight)
-    
-    
+        
     const { asa } = watch();
     const filteredSelectedAsa = asas.find(a => a.id === asa);
     setSelectedAsa(filteredSelectedAsa);
