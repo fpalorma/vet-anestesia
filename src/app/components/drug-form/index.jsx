@@ -11,10 +11,10 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import Button from "@mui/material/Button";
-import { useFormContext, useFormState, Controller } from "react-hook-form"
+import { useFormContext, Controller } from "react-hook-form"
 import drugList from '../../constants/drugs.json';
 import styles from './style.module.css';
-import { checkTimeDisabled } from "@/app/utils/form";
+import { checkTimeDisabled } from "../../utils/form";
 
 const DrugForm = ({ handleOnAddDrug, selectedDrugs }) => {
   const { control,formState: { errors,isDirty,isValid }, setValue, reset, watch, getValues, resetField, trigger } = useFormContext();

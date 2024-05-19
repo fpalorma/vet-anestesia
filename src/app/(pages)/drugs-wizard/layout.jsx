@@ -1,17 +1,24 @@
 'use client'
-import { useState } from "react";
-import { WizardContext } from "./wizard-context";
+import { useState, useEffect } from "react";
 import { Box } from "@mui/material";
+import { useRouter } from 'next/navigation'
+import { WizardContext } from "./context";
 
-export default function DrugsWizardLayout({
-  children, // will be a page or nested layout
-}) {
-
-  const [selectedAsa, setSelectedAsa] = useState()
+const DrugsWizardLayout = ({ children }) => {
+  const [selectedAsa, setSelectedAsa] = useState();
   const [drugs, setDrugs] = useState([]);
   const [weightState, setWeightState] = useState();
-  return (
+  
+  const router = useRouter();
 
+  /* Validation on refresh or open one of the next steps by url */
+  useEffect(() => {
+    if (!selectedAsa) {
+      router.push('./step1')
+    }
+  }, [selectedAsa, router])
+
+  return (
     <WizardContext.Provider
       value={{
         drugObj: [drugs, setDrugs],
@@ -21,14 +28,13 @@ export default function DrugsWizardLayout({
     >
       <section>
         <Box sx={{
-          margin: 5
+          margin: 3
         }}>
           {children}
         </Box>
       </section>
-
-      {/* Include shared UI here e.g. a header or sidebar */}
     </WizardContext.Provider>
-
   )
 }
+
+export default DrugsWizardLayout;

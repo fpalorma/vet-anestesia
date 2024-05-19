@@ -1,45 +1,58 @@
 'use client'
-import { WizardContext } from "../wizard-context";
+import { WizardContext } from "../context";
 import { useContext } from "react";
-import { Box, Button } from "@mui/material";
-import DrugList from "@/app/components/drug-list";
-import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
-import PaidIcon from '@mui/icons-material/Paid';
+import { Box, Button, Typography } from "@mui/material";
+import ButtonGroup from '@mui/material/ButtonGroup';
+import DrugList from "../../../components/drug-list";
+import { NavigateBefore } from '@mui/icons-material';
 import { useRouter } from "next/navigation";
+import Footer from '../../../components/footer';
 
 export default function DrugWizardStep3() {
-    const { drugObj } = useContext(WizardContext);
-    const [drugs, setDrugs] = drugObj;
+  const { drugObj } = useContext(WizardContext);
+  const [drugs, setDrugs] = drugObj;
 
-    const router = useRouter();
+  const router = useRouter();
 
-    const handleOnDelete = (id) => {
-        const list = drugs.filter(row => row.id !== id);
-        setDrugs(list);
-    };
+  const handleOnDelete = (id) => {
+    const list = drugs.filter(row => row.id !== id);
+    setDrugs(list);
 
-    return (
-        <Box>
-            <DrugList list={drugs} handleOnDelete={handleOnDelete} />
-            <Box
-                sx={{
-                    marginTop: 3,
-                    display: 'flex',
-                    justifyContent: 'flex-end'
+    /* If there is no more drugs, go back to step 2 */
+    if (!list.length) {
+      router.push('./step2');
+    }
+  };
 
-                }}
-            >
-                <Button
-                    startIcon={<NavigateBeforeIcon />}
-                    sx={{ marginX: 1 }} variant="contained" onClick={() => router.push('step2')} >
-                    Volver
-                </Button>
-                <Button
-                    startIcon={<PaidIcon />}
-                    variant="contained" onClick={() => router.push('./step4')} >
-                    Presupuesto
-                </Button>
-            </Box>
-        </Box>
-    )
+  return (
+    <Box>
+      <Typography
+        sx={{ mb: 1 }}
+        component="h2"
+        variant="h5"
+        color="text.primary"
+      >
+        Lista de drogas
+      </Typography>
+      <DrugList list={drugs} handleOnDelete={handleOnDelete} />
+      <Footer>
+        <ButtonGroup fullWidth={true}>
+          <Button
+            startIcon={<NavigateBefore />}
+            sx={{ marginX: 1 }} 
+            variant="outlined" 
+            onClick={() => router.push('step2')}
+          >
+            Volver
+          </Button>
+          <Button
+            variant="contained" 
+            onClick={() => router.push('./step4')}
+          >
+            Presupuestar
+          </Button>
+        </ButtonGroup>
+      </Footer>
+    </Box>
+  )
 }

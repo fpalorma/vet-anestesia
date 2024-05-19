@@ -1,8 +1,6 @@
 'use client';
-
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-
 
 export default function Home() {
 
@@ -12,5 +10,5 @@ export default function Home() {
     router.push('/drugs-wizard/step1')
   })
 
-  return <>redirecting...</>
+  return <></>;
 }

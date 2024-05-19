@@ -20,7 +20,7 @@ const AsaSecondaryText = ({ value }) => (
   <span className={styles.asa}>{value}</span>
 );
 
-const Budget = ({ asa, drugs = [], disabled, weight}) => {
+const Budget = ({ asa, drugs = [], weight }) => {
   const [budget, setBudget] = useState(0);
   const ref = useRef(null);
 
@@ -53,25 +53,11 @@ const Budget = ({ asa, drugs = [], disabled, weight}) => {
     }
   });
 
-
-
   return (
     <>
-      {/* <Button
-        fullWidth 
-        variant="contained"
-        onClick={handleOnQuote}
-        startIcon={<ReceiptOutlinedIcon />}
-        disabled={disabled}
-      >
-        Presupuestar
-      </Button>
-       */}
-
       {
         !!budget && <Box sx={{ mt: 2 }} ref={ref}>
           <Paper elevation={3} sx={{ p: 2, bgcolor: 'primary.main' }}>
-            
             <Box className={styles.title}>Presupuesto</Box>
             <List dense={true}>
               {
@@ -92,7 +78,7 @@ const Budget = ({ asa, drugs = [], disabled, weight}) => {
           </Paper>
         </Box>
       }
-            <Button
+      <Button
         fullWidth 
         variant="contained"
         onClick={exportPdf}

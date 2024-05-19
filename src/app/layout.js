@@ -5,12 +5,9 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import './globals.css'
-// import ButtonAppBar from './components/nav-bar/index copy'
-import DrawerAppBar from './components/nav-bar/drawer-app-bar'
+import NavBar from './components/nav-bar';
 
-
-
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'], weight: '400' })
 
 export const metadata = {
   title: "VET Anestesia",
@@ -43,7 +40,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
       <nav>
-        <DrawerAppBar/>
+        <NavBar />
       </nav>
       <main>
         {children}
