@@ -7,7 +7,7 @@ import '@fontsource/roboto/700.css';
 import './globals.css'
 import NavBar from './components/nav-bar';
 
-const inter = Inter({ subsets: ['latin'], weight: '400' })
+const inter = Inter({ subsets: ['latin'], weight: '400' });
 
 export const metadata = {
   title: "VET Anestesia",
@@ -16,9 +16,9 @@ export const metadata = {
   manifest: "/manifest.json",
   keywords: ["vet", "anestesia", "veterinaria", "calculadora", "calc"],
   authors: [
-    { 
-      name: "Agustin Labiano", 
-      url: "https://ar.linkedin.com/in/agustin-labiano" 
+    {
+      name: "Agustin Labiano",
+      url: "https://ar.linkedin.com/in/agustin-labiano",
     },
     {
       name: "Federico Palorma",
@@ -32,7 +32,7 @@ export const metadata = {
 };
 
 export const viewport = {
-  themeColor:  { media: "(prefers-color-scheme: light)", color: "#ffffff" }
+  themeColor: { media: "(prefers-color-scheme: light)", color: "#ffffff" },
 };
 
 export default function RootLayout({ children }) {
@@ -47,5 +47,5 @@ export default function RootLayout({ children }) {
       </main>
       </body>
     </html>
-  )
+  );
 }

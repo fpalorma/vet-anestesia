@@ -10,7 +10,10 @@ import { Controller, useFormContext } from "react-hook-form"
 import asas from "../../constants/asas.json";
 
 const MainForm = ({ asa, disableWeight }) => {
-  const { formState: { errors }, control } = useFormContext();
+  const {
+    formState: { errors },
+    control,
+  } = useFormContext();
 
   return (
     <>
@@ -22,7 +25,7 @@ const MainForm = ({ asa, disableWeight }) => {
         }}
         defaultValue={asa?.id || ''}
         render={({ field }) => (
-          <FormControl fullWidth margin='normal' error={!!errors.asa}>
+          <FormControl fullWidth margin="normal" error={!!errors.asa}>
             <InputLabel id="asa-label">Asa anestésica</InputLabel>
             <Select
               {...field}
@@ -36,41 +39,45 @@ const MainForm = ({ asa, disableWeight }) => {
                 </MenuItem>
               ))}
             </Select>
-            <FormHelperText id="asa-helper">{errors.asa ? errors.asa.message : asa?.description}</FormHelperText>
+            <FormHelperText id="asa-helper">
+              {errors.asa ? errors.asa.message : asa?.description}
+            </FormHelperText>
           </FormControl>
         )}
-      >
-      </Controller>
+      ></Controller>
       <Controller
         control={control}
-        name='weight'
+        name="weight"
         rules={{
-          required: 'El peso es requerido',
+          required: "El peso es requerido",
           pattern: {
             value: /^(0*[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$/g,
-            message: 'El peso debe ser mayor a 0'
-          }
+            message: "El peso debe ser mayor a 0",
+          },
         }}
-        defaultValue='0'
+        defaultValue="0"
         render={({ field }) => (
-          <FormControl fullWidth margin='normal' error={!!errors.weight}>
+          <FormControl fullWidth margin="normal" error={!!errors.weight}>
             <InputLabel id="weight-label">Peso</InputLabel>
             <OutlinedInput
               {...field}
               id="weight"
               disabled={disableWeight}
               label="Peso"
-              type='number'
+              type="number"
               endAdornment={<InputAdornment position="end">kg</InputAdornment>}
               inputProps={{
-                'aria-label': 'weight'
+                "aria-label": "weight",
               }}
             />
-            <FormHelperText id="weight-helper">{disableWeight ? 'Una vez agregada una droga no se puede modificar el peso' : errors.weight?.message}</FormHelperText>
+            <FormHelperText id="weight-helper">
+              {disableWeight
+                ? "Una vez agregada una droga no se puede modificar el peso"
+                : errors.weight?.message}
+            </FormHelperText>
           </FormControl>
         )}
-      >
-      </Controller>
+      ></Controller>
     </>
   );
 };

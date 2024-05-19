@@ -1,11 +1,10 @@
 'use client'
 import { WizardContext } from "../context";
 import { useContext } from "react";
-import { Box, Button, Typography } from "@mui/material";
-import ButtonGroup from '@mui/material/ButtonGroup';
-import DrugList from "../../../components/drug-list";
-import { NavigateBefore } from '@mui/icons-material';
 import { useRouter } from "next/navigation";
+import { Grid, Box, Button, Typography } from "@mui/material";
+import { NavigateBefore } from '@mui/icons-material';
+import DrugList from "../../../components/drug-list";
 import Footer from '../../../components/footer';
 
 export default function DrugWizardStep3() {
@@ -36,22 +35,27 @@ export default function DrugWizardStep3() {
       </Typography>
       <DrugList list={drugs} handleOnDelete={handleOnDelete} />
       <Footer>
-        <ButtonGroup fullWidth={true}>
-          <Button
-            startIcon={<NavigateBefore />}
-            sx={{ marginX: 1 }} 
-            variant="outlined" 
-            onClick={() => router.push('step2')}
-          >
-            Volver
-          </Button>
-          <Button
-            variant="contained" 
-            onClick={() => router.push('./step4')}
-          >
-            Presupuestar
-          </Button>
-        </ButtonGroup>
+        <Grid container columns={2} columnGap={{ xs: 1 }}>
+          <Grid item={true} xs>
+            <Button
+              fullWidth={true}
+              startIcon={<NavigateBefore />}
+              variant="outlined" 
+              onClick={() => router.push('step2')}
+            >
+              Volver
+            </Button>
+          </Grid>
+          <Grid item={true} xs>
+            <Button
+              fullWidth={true}
+              variant="contained" 
+              onClick={() => router.push('./step4')}
+            >
+              Presupuestar
+            </Button>
+          </Grid>
+        </Grid>
       </Footer>
     </Box>
   )

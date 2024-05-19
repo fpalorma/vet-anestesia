@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect } from "react";
-import { Box } from "@mui/material";
 import { useRouter } from 'next/navigation'
+import { Box } from "@mui/material";
 import { WizardContext } from "./context";
 
 const DrugsWizardLayout = ({ children }) => {
@@ -16,7 +16,7 @@ const DrugsWizardLayout = ({ children }) => {
     if (!selectedAsa) {
       router.push('./step1')
     }
-  }, [selectedAsa, router])
+  }, [])
 
   return (
     <WizardContext.Provider
@@ -27,9 +27,7 @@ const DrugsWizardLayout = ({ children }) => {
       }}
     >
       <section>
-        <Box sx={{
-          margin: 3
-        }}>
+        <Box sx={{ margin: 3 }}>
           {children}
         </Box>
       </section>

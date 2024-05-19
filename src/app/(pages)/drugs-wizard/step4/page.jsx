@@ -1,12 +1,12 @@
 
 'use client'
-import { WizardContext } from "../context";
 import { useContext } from "react";
-import { Box, Button, ButtonGroup } from "@mui/material";
-import Budget from "../../../components/budget";
 import { useRouter } from "next/navigation";
+import { Box, Button, Grid, Typography } from "@mui/material";
+import { NavigateBefore } from '@mui/icons-material';
+import { WizardContext } from "../context";
+import Budget from "../../../components/budget";
 import Footer from "../../../components/footer";
-import { NavigateBefore } from "@mui/icons-material";
 
 export default function DrugWizardStep4() {
   const { asaObj, drugObj, weightObj } = useContext(WizardContext);
@@ -24,6 +24,14 @@ export default function DrugWizardStep4() {
 
   return (
     <Box>
+      <Typography
+        sx={{ mb: 1 }}
+        component="h2"
+        variant="h5"
+        color="text.primary"
+      >
+        Presupuesto
+      </Typography>
       <Budget
         asa={selectedAsa}
         weight={weightState}
@@ -31,23 +39,27 @@ export default function DrugWizardStep4() {
         disabled={!drugs.length}
       />
       <Footer>
-        <ButtonGroup fullWidth={true}>
-          <Button
-            sx={{ marginX: 1 }}
-            startIcon={<NavigateBefore />}
-            variant="outlined"
-            onClick={() => router.push('./step3')}
-          >
-            Volver
-          </Button>
-          <Button
-            sx={{ marginX: 1 }}
-            variant="contained"
-            onClick={() => goToStep1()}
-          >
-            Nuevo
-          </Button>
-        </ButtonGroup>
+        <Grid container columns={2} columnGap={{ xs: 1 }}>
+          <Grid item={true} xs>
+            <Button
+              fullWidth={true}
+              startIcon={<NavigateBefore />}
+              variant="outlined"
+              onClick={() => router.push('./step3')}
+            >
+              Volver
+            </Button>
+          </Grid>
+          <Grid item={true} xs>
+            <Button
+              fullWidth={true}
+              variant="contained"
+              onClick={() => goToStep1()}
+            >
+              Nuevo
+            </Button>
+          </Grid>
+        </Grid>
       </Footer>
     </Box>
   )

@@ -1,13 +1,13 @@
 'use client'
 import { useForm, FormProvider } from "react-hook-form"
 import { useContext, useEffect } from "react";
-import MainForm from "../../../components/main-form";
-import { Box, Button } from "@mui/material";
 import { useRouter } from "next/navigation";
+import { Box, Button } from "@mui/material";
 import { NavigateNext } from '@mui/icons-material';
 import { WizardContext } from "../context";
-import asas from "../../../constants/asas.json";
+import MainForm from "../../../components/main-form";
 import Footer from "../../../components/footer";
+import asas from "../../../constants/asas.json";
 
 export default function DrugWizardStep1() {
   const mainForm = useForm({ mode: "onBlur" });

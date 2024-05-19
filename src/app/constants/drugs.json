@@ -4,7 +4,7 @@
     "bolo": { "value": 2, "unit": "mg/kg" },
     "dose": { "value": 0, "unit": "mg/kg/min", "unique": false },
     "density": { "value": 20, "unit": "mg/ml" },
-    "price": 20521,
+    "price": 23994,
     "size": { "value": 50, "unit": "ml" },
     "id": "e642f460-8ba3-4f1c-a50b-9cf9a8e9efb7"
   },
@@ -13,16 +13,16 @@
     "bolo": { "value": 5, "unit": "mcg/kg/min" },
     "dose": { "value": 0.4, "unit": "mcg/kg/min", "unique": false },
     "density": { "value": 10, "unit": "mcg/ml" },
-    "price": 10000,
+    "price": 13800,
     "size": { "value": 500, "unit": "ml" },
     "id": "a7351c87-94af-4fcf-9f11-0e4c8b76c0df"
   },
   {
-    "label": "Fenta",
+    "label": "Fentanilo",
     "bolo": { "value": 5, "unit": "mcg/kg" },
     "dose": { "value": 3, "unit": "mcg/kg/hr", "unique": false },
     "density": { "value": 50, "unit": "mcg/ml" },
-    "price": 1800,
+    "price": 2140,
     "size": { "value": 5, "unit": "ml" },
     "id": "cbdfca25-b370-417d-b3c1-32f0f660b97d"
   },
@@ -30,7 +30,7 @@
     "label": "Morfina",
     "dose": { "value": 0.3, "unit": "mg/kg", "unique": true },
     "density": { "value": 10, "unit": "mg/ml" },
-    "price": 900,
+    "price": 1500,
     "size": { "value": 1, "unit": "ml" },
     "id": "4d9a5b49-0d7c-4d12-9a33-b85fcd99c9c2"
   },
@@ -76,17 +76,17 @@
     "id": "5e8478d2-556b-4d25-8195-af3c3140d5bf"
   },
   {
-    "label": "Bupivacaina",
+    "label": "Bupivacaína",
     "dose": { "value": 0, "unit": "ml/kg", "unique": true },
-    "price": 9300,
+    "price": 10700,
     "size": { "value": 50, "unit": "ml" },
     "id": "0ee53c0f-c7ea-4ba4-9163-0db9c85fe24a"
   },
   {
-    "label": "Nora",
+    "label": "Noradrenalina",
     "dose": { "value": 3, "unit": "mcg/kg/min", "unique": false },
     "density": { "value": 1, "unit": "mcg/ml" },
-    "price": 917,
+    "price": 1015,
     "size": { "value": 500, "unit": "ml" },
     "id": "7c5e5ec2-72c0-4d64-8d08-85b9a4e1c758"
   },
@@ -103,7 +103,7 @@
     "bolo": { "value": 1, "unit": "mcg/kg" },
     "dose": { "value": 0.5, "unit": "mcg/kg/hr", "unique": false },
     "density": { "value": 100, "unit": "mcg/ml" },
-    "price": 4172,
+    "price":  4438.57,
     "size": { "value": 2, "unit": "ml" },
     "id": "e4e558f1-11ed-4e50-bde8-5397b0e56e04"
   },
@@ -112,7 +112,7 @@
     "bolo": { "value": 5, "unit": "mcg/kg" },
     "dose": { "value": 1, "unit": "mcg/kg/hr", "unique": false },
     "density": { "value": 500, "unit": "mcg/ml" },
-    "price": 50000,
+    "price": 44500,
     "size": { "value": 50, "unit": "ml" },
     "id": "f2d8e2d1-cb87-4f06-b7d6-1a888f0f0d7c"
   },
@@ -129,7 +129,7 @@
     "bolo": { "value": 1, "unit": "mg/kg" },
     "dose": { "value": 0.5, "unit": "mg/kg/hr", "unique": false },
     "density": { "value": 50, "unit": "mg/ml" },
-    "price": 9800,
+    "price": 12000,
     "size": { "value": 50, "unit": "ml" },
     "id": "9e0ecf0a-7e0b-4b50-b217-4c0c46f23a4b"
   },
@@ -138,7 +138,7 @@
     "bolo": { "value": 20, "unit": "mg/kg" },
     "dose": { "value": 1, "unit": "mg/kg/hr", "unique": false },
     "density": { "value": 100, "unit": "mg/ml" },
-    "price": 3000,
+    "price": 3942.40,
     "size": { "value": 5, "unit": "ml" },
     "id": "8bb7e258-1a49-4e1d-a41a-104d10c68d6a"
   },
@@ -147,7 +147,7 @@
     "bolo": { "value": 2, "unit": "mg/kg" },
     "dose": { "value": 0, "unit": "mg/kg/min", "unique": false },
     "density": { "value": 10, "unit": "mg/ml" },
-    "price": 15000,
+    "price": 15937,
     "size": { "value": 50, "unit": "ml" },
     "id": "9e6f5e94-4591-4e6d-ad6c-0cb4d20bb542"
   },
