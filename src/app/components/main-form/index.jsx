@@ -1,11 +1,12 @@
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import InputAdornment from "@mui/material/InputAdornment";
-import FormHelperText from "@mui/material/FormHelperText";
-import { Controller, useFormContext } from "react-hook-form";
+
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputAdornment from '@mui/material/InputAdornment';
+import FormHelperText from '@mui/material/FormHelperText';
+import { Controller, useFormContext } from "react-hook-form"
 import asas from "../../constants/asas.json";
 
 const MainForm = ({ asa, disableWeight }) => {
@@ -18,11 +19,11 @@ const MainForm = ({ asa, disableWeight }) => {
     <>
       <Controller
         control={control}
-        name="asa"
+        name='asa'
         rules={{
-          required: "El asa anestésica es requerida",
+          required: 'El asa anestésica es requerida',
         }}
-        defaultValue=""
+        defaultValue={asa?.id || ''}
         render={({ field }) => (
           <FormControl fullWidth margin="normal" error={!!errors.asa}>
             <InputLabel id="asa-label">Asa anestésica</InputLabel>
