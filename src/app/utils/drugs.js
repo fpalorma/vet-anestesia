@@ -5,6 +5,9 @@ export const getDrugDetails = (drug) => {
   if (drug.bolo) {
     bolo = ` ${drug.bolo.value} ${drug.bolo.unit} `;
   }
+  if (!drug.bolo?.unique && drug.bolo?.boloTime) {
+    bolo += `(${drug.bolo.boloTime} mins)`;
+  }
   if (drug.dose) {
     dose = ` ${drug.dose.value} ${drug.dose.unit} `;
   }
@@ -21,6 +24,8 @@ const getTime = (time, unit) => {
   const multiplier = getTimeMultiplier(unit);
   return t * multiplier;
 };
+
+const getBoloMl = (weight, dose, density, boloTime) => ((weight * dose) / density) * Number(boloTime)
 
 export const getBudget = (asa, weight, list) =>
   list.reduce((acc, drug) => acc + getDrugPrice(weight, drug), asa.price);
@@ -53,7 +58,7 @@ export const getDrugPrice = (
 export const addDrugMl = (weight, drug) => {
   const { bolo, density, dose, time } = drug;
   if (bolo) {
-    bolo.ml = getMl(weight, bolo.value, density.value).toFixed(2);
+    bolo.ml = bolo.unique ? getMl(weight, bolo.value, density.value).toFixed(2) : getBoloMl(weight, bolo.value, density.value, bolo.boloTime).toFixed(2);
   }
   if (dose) {
     dose.ml = getMl(

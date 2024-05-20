@@ -13,8 +13,9 @@ import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOu
 import Button from "@mui/material/Button";
 import { useFormContext, useFormState, Controller } from "react-hook-form";
 import drugList from "../../constants/drugs.json";
-import { checkTimeDisabled } from "../../utils/form";
+import { checkTimeDisabled, checkBoloTimeDisabled } from "../../utils/form";
 import styles from "./style.module.css";
+
 
 const DrugForm = ({ handleOnAddDrug, selectedDrugs }) => {
   const { control, setValue, reset, watch, getValues, resetField, trigger } =
@@ -27,7 +28,7 @@ const DrugForm = ({ handleOnAddDrug, selectedDrugs }) => {
   const handleOnDrugChange = (selectedDrug) => {
     /* Reset isBoloDose errors and values to true. This avoid issues
      with some conditions of the form that depends on this field */
-    resetField("isBoloDose");
+    resetField("isBoloDose", { defaultValue: [true, true] });
     if (!selectedDrug) {
       return;
     }
@@ -47,11 +48,14 @@ const DrugForm = ({ handleOnAddDrug, selectedDrugs }) => {
   const handleOnAdd = () => {
     /* I create a copy with the basic data of the drug and then I add 
      the dose, bole and time according to the conditions below */
-    const { time, bolo, dose } = getValues();
+    const { time, bolo, dose, boloTime } = getValues();
     const { id, label, price, size, density } = drug;
     const element = { id, label, price, size, density };
-    if (drug.bolo && isBolo) {
+    if (drug.bolo && isBolo && drug.bolo.unique) {
       element.bolo = { ...drug.bolo, value: bolo };
+    }
+    if (!isBoloTimeDisabled && drug.bolo) {
+      element.bolo = { ...drug.bolo, value: bolo, boloTime: boloTime };
     }
     if (isDose) {
       element.dose = { ...drug.dose, value: dose };
@@ -67,9 +71,10 @@ const DrugForm = ({ handleOnAddDrug, selectedDrugs }) => {
   };
 
   const options = drugList.filter(
-    (d) => !selectedDrugs.some((r) => r.id == d.id),
+    (d) => !selectedDrugs.some((r) => r.id == d.id)
   );
   const isTimeDisabled = checkTimeDisabled(drug, isDose);
+  const isBoloTimeDisabled = checkBoloTimeDisabled(drug);
   return (
     <>
       <Controller
@@ -174,6 +179,48 @@ const DrugForm = ({ handleOnAddDrug, selectedDrugs }) => {
                 />
                 <FormHelperText id="bolo-helper">
                   {errors.bolo?.message}
+                </FormHelperText>
+              </FormControl>
+            )}
+          ></Controller>
+        </>
+      )}
+      {!isBoloTimeDisabled && (
+        <>
+          <Controller
+            control={control}
+            name="boloTime"
+            rules={{
+              required: "El tiempo es requerido",
+              pattern: {
+                value: /^(0*[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$/g,
+                message: "El tiempo debe ser mayor a 0",
+              },
+            }}
+            disabled={isBoloTimeDisabled}
+            defaultValue="0"
+            render={({ field }) => (
+              // Not all drugs has time so we hide errors when the field is disabled
+              <FormControl
+                fullWidth
+                margin="normal"
+                error={!isBoloTimeDisabled && !!errors.boloTime}
+              >
+                <InputLabel id="time-label">Tiempo de bolo</InputLabel>
+                <OutlinedInput
+                  {...field}
+                  id="boloTime"
+                  label="Tiempo del bolo"
+                  type="number"
+                  endAdornment={
+                    <InputAdornment position="end">min</InputAdornment>
+                  }
+                  inputProps={{
+                    "aria-label": "boloTime",
+                  }}
+                />
+                <FormHelperText id="time-helper">
+                  {errors.boloTime?.message}
                 </FormHelperText>
               </FormControl>
             )}

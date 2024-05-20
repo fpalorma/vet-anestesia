@@ -29,3 +29,10 @@ export const checkTimeDisabled = (drug, isDose) => {
 
   return false;
 };
+
+export const checkBoloTimeDisabled = (drug) => {
+  if (!drug || !drug.bolo) {
+    return true;
+  }
+  return drug.bolo.unique;
+};

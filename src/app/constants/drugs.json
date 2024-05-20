@@ -1,8 +1,8 @@
 [
   {
     "label": "Propofol 2%",
-    "bolo": { "value": 2, "unit": "mg/kg" },
-    "dose": { "value": 0, "unit": "mg/kg/min", "unique": false },
+    "bolo": { "value": 2, "unit": "mg/kg", "unique": true },
+    "dose": { "value": 1, "unit": "mg/kg/min", "unique": false },
     "density": { "value": 20, "unit": "mg/ml" },
     "price": 23994,
     "size": { "value": 50, "unit": "ml" },
@@ -10,7 +10,7 @@
   },
   {
     "label": "Remifentanilo",
-    "bolo": { "value": 5, "unit": "mcg/kg/min" },
+    "bolo": { "value": 5, "unit": "mcg/kg/min", "unique": false },
     "dose": { "value": 0.4, "unit": "mcg/kg/min", "unique": false },
     "density": { "value": 10, "unit": "mcg/ml" },
     "price": 13800,
@@ -19,7 +19,7 @@
   },
   {
     "label": "Fentanilo",
-    "bolo": { "value": 5, "unit": "mcg/kg" },
+    "bolo": { "value": 5, "unit": "mcg/kg", "unique": true },
     "dose": { "value": 3, "unit": "mcg/kg/hr", "unique": false },
     "density": { "value": 50, "unit": "mcg/ml" },
     "price": 2140,
@@ -44,7 +44,7 @@
   },
   {
     "label": "Midazolam",
-    "bolo": { "value": 0.5, "unit": "mg/kg" },
+    "bolo": { "value": 0.5, "unit": "mg/kg", "unique": true },
     "dose": { "value": 0.5, "unit": "mg/kg/hr", "unique": false },
     "density": { "value": 5, "unit": "mg/ml" },
     "price": 3000,
@@ -68,7 +68,7 @@
   },
   {
     "label": "Lido ev",
-    "bolo": { "value": 2, "unit": "mg/kg" },
+    "bolo": { "value": 2, "unit": "mg/kg", "unique": true },
     "dose": { "value": 1, "unit": "mg/kg/min", "unique": false },
     "density": { "value": 20, "unit": "mg/ml" },
     "price": 8000,
@@ -100,7 +100,7 @@
   },
   {
     "label": "Dexmedeto",
-    "bolo": { "value": 1, "unit": "mcg/kg" },
+    "bolo": { "value": 1, "unit": "mcg/kg", "unique": true },
     "dose": { "value": 0.5, "unit": "mcg/kg/hr", "unique": false },
     "density": { "value": 100, "unit": "mcg/ml" },
     "price":  4438.57,
@@ -109,7 +109,7 @@
   },
   {
     "label": "Medeto",
-    "bolo": { "value": 5, "unit": "mcg/kg" },
+    "bolo": { "value": 5, "unit": "mcg/kg", "unique": true },
     "dose": { "value": 1, "unit": "mcg/kg/hr", "unique": false },
     "density": { "value": 500, "unit": "mcg/ml" },
     "price": 44500,
@@ -126,7 +126,7 @@
   },
   {
     "label": "Ketamina",
-    "bolo": { "value": 1, "unit": "mg/kg" },
+    "bolo": { "value": 1, "unit": "mg/kg", "unique": true },
     "dose": { "value": 0.5, "unit": "mg/kg/hr", "unique": false },
     "density": { "value": 50, "unit": "mg/ml" },
     "price": 12000,
@@ -135,7 +135,7 @@
   },
   {
     "label": "Ac tranexamico",
-    "bolo": { "value": 20, "unit": "mg/kg" },
+    "bolo": { "value": 20, "unit": "mg/kg", "unique": true },
     "dose": { "value": 1, "unit": "mg/kg/hr", "unique": false },
     "density": { "value": 100, "unit": "mg/ml" },
     "price": 3942.40,
@@ -144,7 +144,7 @@
   },
   {
     "label": "Propofol 1%",
-    "bolo": { "value": 2, "unit": "mg/kg" },
+    "bolo": { "value": 2, "unit": "mg/kg", "unique": true },
     "dose": { "value": 0, "unit": "mg/kg/min", "unique": false },
     "density": { "value": 10, "unit": "mg/ml" },
     "price": 15937,
@@ -153,7 +153,7 @@
   },
   {
     "label": "Atracurio",
-    "bolo": { "value": 2, "unit": "mg/kg" },
+    "bolo": { "value": 2, "unit": "mg/kg", "unique": true },
     "dose": { "value": 0, "unit": "mg/kg/min", "unique": false },
     "density": { "value": 10, "unit": "mg/ml" },
     "price": 7400,
@@ -162,7 +162,7 @@
   },
   {
     "label": "Succinicolina",
-    "bolo": { "value": 0, "unit": "mg/kg" },
+    "bolo": { "value": 0, "unit": "mg/kg", "unique": true },
     "dose": { "value": 0, "unit": "mg/kg", "unique": true },
     "density": { "value": 20, "unit": "mg/ml" },
     "price": 3000,
