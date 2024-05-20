@@ -12,7 +12,7 @@ const DrugSecondaryText = ({ drug }) => {
 };
 
 const BudgetItem = ({ drug, weight }) => (
-  <ListItem sx={{ color: lightBlue[100], fontWeight: "medium" }}>
+  <ListItem sx={{ color: 'primary.main', fontWeight: "medium" }}>
     <ListItemText
       primary={drug.label}
       secondary={<DrugSecondaryText drug={drug} />}

@@ -1,11 +1,13 @@
-import { Inter } from "next/font/google";
-import "@fontsource/roboto/300.css";
-import "@fontsource/roboto/400.css";
-import "@fontsource/roboto/500.css";
-import "@fontsource/roboto/700.css";
-import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+import { Inter } from 'next/font/google'
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+import './globals.css'
+import NavBar from './components/nav-bar';
+
+const inter = Inter({ subsets: ['latin'], weight: '400' });
 
 export const metadata = {
   title: "VET Anestesia",
@@ -36,7 +38,14 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+      <nav>
+        <NavBar />
+      </nav>
+      <main>
+        {children}
+      </main>
+      </body>
     </html>
   );
 }

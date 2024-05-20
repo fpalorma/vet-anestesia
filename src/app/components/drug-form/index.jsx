@@ -13,8 +13,9 @@ import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOu
 import Button from "@mui/material/Button";
 import { useFormContext, useFormState, Controller } from "react-hook-form";
 import drugList from "../../constants/drugs.json";
+import { checkTimeDisabled, checkBoloTimeDisabled } from "../../utils/form";
 import styles from "./style.module.css";
-import { checkTimeDisabled, checkBoloTimeDisabled } from "@/app/utils/form";
+
 
 const DrugForm = ({ handleOnAddDrug, selectedDrugs }) => {
   const { control, setValue, reset, watch, getValues, resetField, trigger } =
@@ -41,6 +42,8 @@ const DrugForm = ({ handleOnAddDrug, selectedDrugs }) => {
     // Refresh validation state with the new values
     trigger(["dose", "bolo"]);
   };
+
+
 
   const handleOnAdd = () => {
     /* I create a copy with the basic data of the drug and then I add 
@@ -301,7 +304,7 @@ const DrugForm = ({ handleOnAddDrug, selectedDrugs }) => {
         fullWidth
         variant="contained"
         onClick={handleOnAdd}
-        startIcon={<AddCircleOutlineOutlinedIcon />}
+        endIcon={<AddCircleOutlineOutlinedIcon />}
         disabled={!isDirty || !isValid}
       >
         Agregar
