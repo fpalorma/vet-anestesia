@@ -41,7 +41,8 @@ export default function DrugWizardStep1() {
         sx={{
           marginTop: 3,
           display: 'flex',
-          justifyContent: 'flex-end'
+          justifyContent: 'flex-end',
+          paddingTop: 3
         }}
       >
         <Footer>
