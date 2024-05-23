@@ -37,25 +37,17 @@ export default function DrugWizardStep1() {
       <FormProvider {...mainForm}>
         <MainForm asa={selectedAsa} disableWeight={false} />
       </FormProvider>
-      <Box
-        sx={{
-          marginTop: 3,
-          display: 'flex',
-          justifyContent: 'flex-end'
-        }}
-      >
-        <Footer>
-          <Button
-            endIcon={<NavigateNext />}
-            variant="contained"
-            onClick={handleSubmit(() => router.push('./step2'))}
-            disabled={!isValid}
-            fullWidth={true}
-          >
-            Siguiente
-          </Button>
-        </Footer>
-      </Box>
+      <Footer>
+        <Button
+          endIcon={<NavigateNext />}
+          variant="contained"
+          onClick={handleSubmit(() => router.push('./step2'))}
+          disabled={!isValid}
+          fullWidth={true}
+        >
+          Siguiente
+        </Button>
+      </Footer>
     </>
   )
 }
