@@ -15,6 +15,8 @@ import { useFormContext, useFormState, Controller } from "react-hook-form";
 import drugList from "../../constants/drugs.json";
 import { checkTimeDisabled, checkBoloTimeDisabled } from "../../utils/form";
 import styles from "./style.module.css";
+import { useEffect, useRef } from "react";
+import { handleOnKeyDown } from "../../utils/handleOnKeyDown";
 
 
 const DrugForm = ({ handleOnAddDrug, selectedDrugs }) => {
@@ -75,6 +77,14 @@ const DrugForm = ({ handleOnAddDrug, selectedDrugs }) => {
   );
   const isTimeDisabled = checkTimeDisabled(drug, isDose);
   const isBoloTimeDisabled = checkBoloTimeDisabled(drug);
+
+  const inputRef = useRef()
+
+  useEffect(()=>{
+    document.addEventListener("keydown", handleOnKeyDown);
+    return ()=>document.removeEventListener("keydown",handleOnKeyDown)
+  },[])
+
   return (
     <>
       <Controller
@@ -164,6 +174,7 @@ const DrugForm = ({ handleOnAddDrug, selectedDrugs }) => {
               <FormControl fullWidth margin="normal" error={!!errors.bolo}>
                 <InputLabel id="bolo-label">Bolo</InputLabel>
                 <OutlinedInput
+                ref = { inputRef }
                   {...field}
                   id="bolo"
                   label="Bolo"
@@ -208,6 +219,7 @@ const DrugForm = ({ handleOnAddDrug, selectedDrugs }) => {
               >
                 <InputLabel id="time-label">Tiempo de bolo</InputLabel>
                 <OutlinedInput
+                ref = { inputRef }
                   {...field}
                   id="boloTime"
                   label="Tiempo del bolo"
@@ -243,6 +255,7 @@ const DrugForm = ({ handleOnAddDrug, selectedDrugs }) => {
           <FormControl fullWidth margin="normal" error={!!errors.dose}>
             <InputLabel id="dose-label">Dosis</InputLabel>
             <OutlinedInput
+            ref = { inputRef }
               {...field}
               id="dose"
               label="Dosis"
@@ -283,6 +296,7 @@ const DrugForm = ({ handleOnAddDrug, selectedDrugs }) => {
           >
             <InputLabel id="time-label">Tiempo</InputLabel>
             <OutlinedInput
+            ref = { inputRef }
               {...field}
               id="time"
               label="Tiempo"
