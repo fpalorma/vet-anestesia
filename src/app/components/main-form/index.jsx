@@ -8,21 +8,19 @@ import InputAdornment from '@mui/material/InputAdornment';
 import FormHelperText from '@mui/material/FormHelperText';
 import { Controller, useFormContext } from "react-hook-form"
 import asas from "../../constants/asas.json";
-import { useEffect, useRef } from 'react';
-import { handleOnKeyDown } from '../../utils/handleOnKeyDown';
 
-const MainForm = ({ asa, disableWeight }) => {
+const MainForm = ({ asa, handleOnChangeFocus }) => {
   const {
     formState: { errors },
     control,
   } = useFormContext();
 
- const inputRef = useRef()
-
-useEffect(()=>{
-  document.addEventListener("keydown", handleOnKeyDown);
-  return ()=>document.removeEventListener("keydown",handleOnKeyDown)
-},[])
+ const changeFocus = (event) => {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      handleOnChangeFocus();
+    }
+ };
 
   return (
     <>
@@ -71,21 +69,14 @@ useEffect(()=>{
             <OutlinedInput
               {...field}
               id="weight"
-              disabled={disableWeight}
               label="Peso"
               type="number"
+              onKeyDown={changeFocus}
               endAdornment={<InputAdornment position="end">kg</InputAdornment>}
               inputProps={{
                 "aria-label": "weight",
               }}
-              ref={inputRef}
-              
             />
-            <FormHelperText id="weight-helper">
-              {disableWeight
-                ? "Una vez agregada una droga no se puede modificar el peso"
-                : errors.weight?.message}
-            </FormHelperText>
           </FormControl>
         )}
       ></Controller>
