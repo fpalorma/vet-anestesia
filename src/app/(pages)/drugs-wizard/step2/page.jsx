@@ -26,7 +26,8 @@ export default function DrugWizardStep2() {
     }
   };
 
-  const buttonNextRef = useRef()
+  const buttonNextRef = useRef();
+ 
 
   return (
     <Box>
@@ -44,10 +45,7 @@ export default function DrugWizardStep2() {
         )}
       </Box>
       <FormProvider {...drugForm}>
-        <DrugForm
-          handleOnAddDrug={handleOnAdd}
-          selectedDrugs={drugs}
-        />
+        <DrugForm handleOnAddDrug={handleOnAdd} selectedDrugs={drugs} nextBtn={buttonNextRef} />
       </FormProvider>
       <Footer>
         <Grid container columns={2} columnGap={{ xs: 1 }}>
@@ -68,8 +66,7 @@ export default function DrugWizardStep2() {
               fullWidth={true}
               onClick={() => router.push("./step3")}
               disabled={drugs.length === 0}
-			  ref = {buttonNextRef}
-			  autoFocus = {true}
+              ref={buttonNextRef}
             >
               Siguiente
             </Button>

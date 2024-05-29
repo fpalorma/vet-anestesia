@@ -18,7 +18,7 @@ import styles from "./style.module.css";
 import { useRef } from "react";
 
 
-const DrugForm = ({ handleOnAddDrug, selectedDrugs }) => {
+const DrugForm = ({ handleOnAddDrug, selectedDrugs, nextBtn }) => {
   const { control, setValue, reset, watch, getValues, resetField, trigger } =
     useFormContext();
   const { isDirty, isValid, errors } = useFormState({ control });
@@ -46,7 +46,7 @@ const DrugForm = ({ handleOnAddDrug, selectedDrugs }) => {
 
 
 
-  const handleOnAdd = () => {
+  const handleOnAdd = (nextBtn) => {
     /* I create a copy with the basic data of the drug and then I add 
      the dose, bole and time according to the conditions below */
     const { time, bolo, dose, boloTime } = getValues();
@@ -69,6 +69,8 @@ const DrugForm = ({ handleOnAddDrug, selectedDrugs }) => {
     if (response) {
       reset();
     }
+    
+   nextBtn.current.focus()
   };
 
   const options = drugList.filter(
@@ -318,7 +320,7 @@ const DrugForm = ({ handleOnAddDrug, selectedDrugs }) => {
       <Button
         fullWidth
         variant="contained"
-        onClick={handleOnAdd}
+        onClick={()=>handleOnAdd(nextBtn)}
         endIcon={<AddCircleOutlineOutlinedIcon />}
         disabled={!isDirty || !isValid}
         ref = {buttonRef}

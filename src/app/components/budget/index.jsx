@@ -54,9 +54,9 @@ const Budget = ({ asa, drugs = [], weight }) => {
   });
 
 useEffect(()=>{
-  window.addEventListener("load",buttonRef.current.focus())
+  budget && buttonRef.current.focus()
   
-},[])
+},[budget])
 
 const buttonRef = useRef()
 
@@ -96,7 +96,6 @@ const buttonRef = useRef()
         disabled={!budget}
         sx={{mt: 2}}
         ref = {buttonRef}
-        autoFocus = {true}
       >
         Exportar
       </Button>
