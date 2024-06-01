@@ -1,4 +1,4 @@
-import { useEffect,useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { jsPDF } from "jspdf";
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
@@ -46,19 +46,11 @@ const Budget = ({ asa, drugs = [], weight }) => {
     setBudget(0);
   }, [asa, drugs]);
 
-
   useEffect(() => {
     if(asa && weight && drugs){
       handleOnQuote()
     }
   });
-
-useEffect(()=>{
-  budget && buttonRef.current.focus()
-  
-},[budget])
-
-const buttonRef = useRef()
 
   return (
     <>
@@ -93,9 +85,8 @@ const buttonRef = useRef()
         variant="contained"
         onClick={exportPdf}
         startIcon={<DownloadIcon />}
-        disabled={!budget}
         sx={{mt: 2}}
-        ref = {buttonRef}
+        autoFocus={true}
       >
         Exportar
       </Button>

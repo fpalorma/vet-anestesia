@@ -18,7 +18,7 @@ import styles from "./style.module.css";
 import { useRef } from "react";
 
 
-const DrugForm = ({ handleOnAddDrug, selectedDrugs, nextBtn }) => {
+const DrugForm = ({ handleOnAddDrug, selectedDrugs }) => {
   const { control, setValue, reset, watch, getValues, resetField, trigger } =
     useFormContext();
   const { isDirty, isValid, errors } = useFormState({ control });
@@ -44,9 +44,7 @@ const DrugForm = ({ handleOnAddDrug, selectedDrugs, nextBtn }) => {
     trigger(["dose", "bolo"]);
   };
 
-
-
-  const handleOnAdd = (nextBtn) => {
+  const handleOnAdd = () => {
     /* I create a copy with the basic data of the drug and then I add 
      the dose, bole and time according to the conditions below */
     const { time, bolo, dose, boloTime } = getValues();
@@ -69,8 +67,6 @@ const DrugForm = ({ handleOnAddDrug, selectedDrugs, nextBtn }) => {
     if (response) {
       reset();
     }
-    
-   nextBtn.current.focus()
   };
 
   const options = drugList.filter(
@@ -320,10 +316,10 @@ const DrugForm = ({ handleOnAddDrug, selectedDrugs, nextBtn }) => {
       <Button
         fullWidth
         variant="contained"
-        onClick={()=>handleOnAdd(nextBtn)}
+        onClick={()=>handleOnAdd()}
         endIcon={<AddCircleOutlineOutlinedIcon />}
         disabled={!isDirty || !isValid}
-        ref = {buttonRef}
+        ref={buttonRef}
       >
         Agregar
       </Button>

@@ -1,7 +1,7 @@
 "use client";
 import { useForm, FormProvider } from "react-hook-form";
 import { useRouter } from "next/navigation";
-import { useContext, useRef } from "react";
+import { useContext } from "react";
 import { Grid, Badge, Box, Button } from "@mui/material";
 import { NavigateNext, NavigateBefore, Vaccines } from "@mui/icons-material";
 import { WizardContext } from "../context";
@@ -24,10 +24,7 @@ export default function DrugWizardStep2() {
       setDrugs(list);
       return true;
     }
-  };
-
-  const buttonNextRef = useRef();
- 
+  }; 
 
   return (
     <Box>
@@ -45,7 +42,7 @@ export default function DrugWizardStep2() {
         )}
       </Box>
       <FormProvider {...drugForm}>
-        <DrugForm handleOnAddDrug={handleOnAdd} selectedDrugs={drugs} nextBtn={buttonNextRef} />
+        <DrugForm handleOnAddDrug={handleOnAdd} selectedDrugs={drugs} />
       </FormProvider>
       <Footer>
         <Grid container columns={2} columnGap={{ xs: 1 }}>
@@ -66,7 +63,6 @@ export default function DrugWizardStep2() {
               fullWidth={true}
               onClick={() => router.push("./step3")}
               disabled={drugs.length === 0}
-              ref={buttonNextRef}
             >
               Siguiente
             </Button>
