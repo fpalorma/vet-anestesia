@@ -1,6 +1,6 @@
 'use client'
 import { useForm, FormProvider } from "react-hook-form"
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { Box, Button } from "@mui/material";
 import { NavigateNext } from '@mui/icons-material';
@@ -32,13 +32,19 @@ export default function DrugWizardStep1() {
 
   const { formState: { isValid } } = mainForm;
 
+  const buttonRef = useRef();
+  const changeFocus = () => {
+    buttonRef.current.focus();
+  }
+
   return (
     <>
       <FormProvider {...mainForm}>
-        <MainForm asa={selectedAsa} disableWeight={false} />
+        <MainForm asa={selectedAsa} handleOnChangeFocus={changeFocus} />
       </FormProvider>
       <Footer>
         <Button
+          ref={buttonRef}
           endIcon={<NavigateNext />}
           variant="contained"
           onClick={handleSubmit(() => router.push('./step2'))}

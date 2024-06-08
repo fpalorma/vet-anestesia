@@ -9,11 +9,18 @@ import FormHelperText from '@mui/material/FormHelperText';
 import { Controller, useFormContext } from "react-hook-form"
 import asas from "../../constants/asas.json";
 
-const MainForm = ({ asa, disableWeight }) => {
+const MainForm = ({ asa, handleOnChangeFocus }) => {
   const {
     formState: { errors },
     control,
   } = useFormContext();
+
+ const changeFocus = (event) => {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      handleOnChangeFocus();
+    }
+ };
 
   return (
     <>
@@ -62,19 +69,14 @@ const MainForm = ({ asa, disableWeight }) => {
             <OutlinedInput
               {...field}
               id="weight"
-              disabled={disableWeight}
               label="Peso"
               type="number"
+              onKeyDown={changeFocus}
               endAdornment={<InputAdornment position="end">kg</InputAdornment>}
               inputProps={{
                 "aria-label": "weight",
               }}
             />
-            <FormHelperText id="weight-helper">
-              {disableWeight
-                ? "Una vez agregada una droga no se puede modificar el peso"
-                : errors.weight?.message}
-            </FormHelperText>
           </FormControl>
         )}
       ></Controller>

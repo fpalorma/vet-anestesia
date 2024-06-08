@@ -15,6 +15,7 @@ import { useFormContext, useFormState, Controller } from "react-hook-form";
 import drugList from "../../constants/drugs.json";
 import { checkTimeDisabled, checkBoloTimeDisabled } from "../../utils/form";
 import styles from "./style.module.css";
+import { useRef } from "react";
 
 
 const DrugForm = ({ handleOnAddDrug, selectedDrugs }) => {
@@ -42,8 +43,6 @@ const DrugForm = ({ handleOnAddDrug, selectedDrugs }) => {
     // Refresh validation state with the new values
     trigger(["dose", "bolo"]);
   };
-
-
 
   const handleOnAdd = () => {
     /* I create a copy with the basic data of the drug and then I add 
@@ -75,6 +74,16 @@ const DrugForm = ({ handleOnAddDrug, selectedDrugs }) => {
   );
   const isTimeDisabled = checkTimeDisabled(drug, isDose);
   const isBoloTimeDisabled = checkBoloTimeDisabled(drug);
+
+  const changeFocus = (event) => {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      buttonRef.current.focus()
+    }
+ };
+
+ const buttonRef = useRef()
+
   return (
     <>
       <Controller
@@ -164,6 +173,7 @@ const DrugForm = ({ handleOnAddDrug, selectedDrugs }) => {
               <FormControl fullWidth margin="normal" error={!!errors.bolo}>
                 <InputLabel id="bolo-label">Bolo</InputLabel>
                 <OutlinedInput
+                onKeyDown={changeFocus}
                   {...field}
                   id="bolo"
                   label="Bolo"
@@ -208,6 +218,7 @@ const DrugForm = ({ handleOnAddDrug, selectedDrugs }) => {
               >
                 <InputLabel id="time-label">Tiempo de bolo</InputLabel>
                 <OutlinedInput
+                onKeyDown={changeFocus}
                   {...field}
                   id="boloTime"
                   label="Tiempo del bolo"
@@ -243,6 +254,7 @@ const DrugForm = ({ handleOnAddDrug, selectedDrugs }) => {
           <FormControl fullWidth margin="normal" error={!!errors.dose}>
             <InputLabel id="dose-label">Dosis</InputLabel>
             <OutlinedInput
+            onKeyDown={changeFocus}
               {...field}
               id="dose"
               label="Dosis"
@@ -283,6 +295,7 @@ const DrugForm = ({ handleOnAddDrug, selectedDrugs }) => {
           >
             <InputLabel id="time-label">Tiempo</InputLabel>
             <OutlinedInput
+            onKeyDown={changeFocus}
               {...field}
               id="time"
               label="Tiempo"
@@ -303,9 +316,10 @@ const DrugForm = ({ handleOnAddDrug, selectedDrugs }) => {
       <Button
         fullWidth
         variant="contained"
-        onClick={handleOnAdd}
+        onClick={()=>handleOnAdd()}
         endIcon={<AddCircleOutlineOutlinedIcon />}
         disabled={!isDirty || !isValid}
+        ref={buttonRef}
       >
         Agregar
       </Button>

@@ -51,6 +51,7 @@ export default function DrugWizardStep3() {
               fullWidth={true}
               variant="contained" 
               onClick={() => router.push('./step4')}
+              autoFocus={true}
             >
               Presupuestar
             </Button>

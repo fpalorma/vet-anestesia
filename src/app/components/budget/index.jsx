@@ -46,7 +46,6 @@ const Budget = ({ asa, drugs = [], weight }) => {
     setBudget(0);
   }, [asa, drugs]);
 
-
   useEffect(() => {
     if(asa && weight && drugs){
       handleOnQuote()
@@ -86,8 +85,8 @@ const Budget = ({ asa, drugs = [], weight }) => {
         variant="contained"
         onClick={exportPdf}
         startIcon={<DownloadIcon />}
-        disabled={!budget}
         sx={{mt: 2}}
+        autoFocus={true}
       >
         Exportar
       </Button>
