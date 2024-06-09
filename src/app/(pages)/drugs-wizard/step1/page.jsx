@@ -2,7 +2,7 @@
 import { useForm, FormProvider } from "react-hook-form"
 import { useContext, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
-import { Box, Button } from "@mui/material";
+import  Button  from "../../../components/button";
 import { NavigateNext } from '@mui/icons-material';
 import { WizardContext } from "../context";
 import MainForm from "../../../components/main-form";
@@ -50,6 +50,7 @@ export default function DrugWizardStep1() {
           onClick={handleSubmit(() => router.push('./step2'))}
           disabled={!isValid}
           fullWidth={true}
+          disableFocusRipple={true}
         >
           Siguiente
         </Button>

@@ -10,7 +10,7 @@ import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
-import Button from "@mui/material/Button";
+import Button from "../button";
 import { useFormContext, useFormState, Controller } from "react-hook-form";
 import drugList from "../../constants/drugs.json";
 import { checkTimeDisabled, checkBoloTimeDisabled } from "../../utils/form";
