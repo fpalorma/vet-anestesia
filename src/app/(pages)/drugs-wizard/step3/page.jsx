@@ -2,7 +2,8 @@
 import { WizardContext } from "../context";
 import { useContext } from "react";
 import { useRouter } from "next/navigation";
-import { Grid, Box, Button, Typography } from "@mui/material";
+import { Grid, Box, Typography } from "@mui/material";
+import Button from "../../../components/button";
 import { NavigateBefore } from '@mui/icons-material';
 import DrugList from "../../../components/drug-list";
 import Footer from '../../../components/footer';

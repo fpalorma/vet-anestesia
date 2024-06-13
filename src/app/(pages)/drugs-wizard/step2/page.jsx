@@ -2,7 +2,8 @@
 import { useForm, FormProvider } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { useContext } from "react";
-import { Grid, Badge, Box, Button } from "@mui/material";
+import { Grid, Badge, Box } from "@mui/material";
+import Button from "../../../components/button";
 import { NavigateNext, NavigateBefore, Vaccines } from "@mui/icons-material";
 import { WizardContext } from "../context";
 import DrugForm from "../../../components/drug-form";
@@ -24,7 +25,7 @@ export default function DrugWizardStep2() {
       setDrugs(list);
       return true;
     }
-  }; 
+  };
 
   return (
     <Box>

@@ -2,7 +2,8 @@
 'use client'
 import { useContext } from "react";
 import { useRouter } from "next/navigation";
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
+import Button from "../../../components/button";
 import { NavigateBefore } from '@mui/icons-material';
 import { WizardContext } from "../context";
 import Budget from "../../../components/budget";
