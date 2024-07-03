@@ -53,7 +53,7 @@ const DrugForm = ({ handleOnAddDrug, selectedDrugs }) => {
     if (drug.bolo && isBolo && drug.bolo.unique) {
       element.bolo = { ...drug.bolo, value: bolo };
     }
-    if (drug.bolo && !isBoloTimeDisabled && isBolo) {
+    if (!isBoloTimeDisabled && isBolo) {
       element.bolo = { ...drug.bolo, value: bolo, boloTime: boloTime };
     }
     if (isDose) {
@@ -207,7 +207,7 @@ const DrugForm = ({ handleOnAddDrug, selectedDrugs }) => {
                 message: "El tiempo debe ser mayor a 0",
               },
             }}
-            disabled={isBoloTimeDisabled || !drug || !isBolo}
+            disabled={isBoloTimeDisabled || !isBolo}
             defaultValue="0"
             render={({ field }) => (
               // Not all drugs has time so we hide errors when the field is disabled
